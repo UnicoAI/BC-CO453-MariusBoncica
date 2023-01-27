@@ -1,8 +1,8 @@
 # C# Console Applications App01 to App05
 | Author | Details |
 | ---- | ---- |
-**Name**: | Student Name  |
-**Student ID**: | 12345678 |
+**Name**: | Marius Boncica  |
+**Student ID**: | 22045429 |
 **Course:** | Computing |
 **Module**: | CO453     |
 **Started**: | January 2021 |    
