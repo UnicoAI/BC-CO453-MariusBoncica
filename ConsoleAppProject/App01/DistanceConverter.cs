@@ -25,18 +25,38 @@ namespace ConsoleAppProject.App01
         private double meters;
         public void Run()
         {
+            MilesToFeet();
+            FeetToMiles();
+            MilestoMeters();
+        }
+
+        //miles to feet methods
+        public void MilesToFeet()
+        {
             OutputHeading();
             InputMiles();
             CalculateFeet();
             OutputFeet();
+        }
 
+        //feet to miles method
+        public void FeetToMiles()
+        {
             OutputHeading();
             InputFeet();
             CalculateMiles();
             OutputMiles();
-
-
         }
+
+        //miles to meters
+        public void MilestoMeters()
+        {
+            OutputHeading();
+            InputMiles();
+            CalculateMeters();
+            OutputMeters();
+        }
+        
         private void OutputHeading()
         { /// <summary>
           ///Create An Heading explaining the app
@@ -75,6 +95,10 @@ namespace ConsoleAppProject.App01
         {
             miles = feet / FEET_IN_MILES;
         }
+        private void CalculateMeters()
+        {
+            meters = miles* METERS_IN_MILES;
+        }
         private void OutputFeet()
         {
             /// <summary>
@@ -95,6 +119,18 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine(feet + " feet you requested to be converted  is " + miles + " miles!");
             Console.WriteLine("-------------------------------------------------------------");
+
+        }
+        private void OutputMeters()
+        {
+            /// <summary>
+
+            /// Output the Result 
+            /// </summary>
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine(miles + " miles you requested to be converted  is " + meters + " meters!");
+            Console.WriteLine("-------------------------------------------------------------");
+
 
         }
     }
