@@ -16,6 +16,8 @@ namespace ConsoleAppProject.App01
         /// <author>
         /// Marius Daniel Boncica Version 1
         /// </author>
+        /// declare variables
+        
         private double miles;
         private double feet;
         public const int FEET_IN_MILES = 5280;
@@ -25,14 +27,14 @@ namespace ConsoleAppProject.App01
             InputMiles();
             CalculateFeet();
             OutputFeet();
-            /// <summary>
-            ///Prompt the user to enter distance in miles
-            /// /// input miles as a double number
-            /// </summary>
+            
            
         }
         private void OutputHeading()
-        {
+        { /// <summary>
+          ///Create An Heading explaining the app
+          
+          /// </summary>
             Console.WriteLine("\n ----------------------------------");
             Console.WriteLine("          Convert Miles to Feet     ");
             Console.WriteLine("          by Marius Boncica         ");
@@ -40,18 +42,32 @@ namespace ConsoleAppProject.App01
         }
         private void InputMiles()
         {
-            Console.Write("Please enter the number of miles: ");
+            /// <summary>
+         ///Prompt the user to enter distance in miles
+         /// /// input miles as a double number
+         /// </summary>
+            Console.Write("Please enter the number of miles you wish to convert! ");
             string value = Console.ReadLine();
             miles= Convert.ToDouble(value); 
 
         }
         private void CalculateFeet()
-        {
+        {/// <summary>
+         ///Used the declared constant value for feet to convert miles to feet
+         
+         /// </summary>
             feet = miles * FEET_IN_MILES;
         }
         private void OutputFeet()
         {
-            Console.WriteLine(miles + " miles is " + " feet!");
+            /// <summary>
+
+            /// Output the Result 
+            /// </summary>
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine(miles + " miles you requested to be converted  is " +   feet +" feet!");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("----------------------Thank you------------------------------");
         }
     }
 }
