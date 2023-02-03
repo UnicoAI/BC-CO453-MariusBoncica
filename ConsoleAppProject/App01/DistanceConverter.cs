@@ -21,14 +21,21 @@ namespace ConsoleAppProject.App01
         private double miles;
         private double feet;
         public const int FEET_IN_MILES = 5280;
+        public const double METERS_IN_MILES = 1609.34;
+        private double meters;
         public void Run()
         {
             OutputHeading();
             InputMiles();
             CalculateFeet();
             OutputFeet();
-            
-           
+
+            OutputHeading();
+            InputFeet();
+            CalculateMiles();
+            OutputMiles();
+
+
         }
         private void OutputHeading()
         { /// <summary>
@@ -51,12 +58,22 @@ namespace ConsoleAppProject.App01
             miles= Convert.ToDouble(value); 
 
         }
+        private void InputFeet()
+        {
+            Console.Write("Please enter the number of feet you wish to convert! ");
+            string value = Console.ReadLine();
+            feet = Convert.ToDouble(value);
+        }
         private void CalculateFeet()
         {/// <summary>
          ///Used the declared constant value for feet to convert miles to feet
          
          /// </summary>
             feet = miles * FEET_IN_MILES;
+        }
+        private void CalculateMiles()
+        {
+            miles = feet / FEET_IN_MILES;
         }
         private void OutputFeet()
         {
@@ -68,6 +85,17 @@ namespace ConsoleAppProject.App01
             Console.WriteLine(miles + " miles you requested to be converted  is " +   feet +" feet!");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("----------------------Thank you------------------------------");
+        }
+        private void OutputMiles()
+        {
+            /// <summary>
+
+            /// Output the Result 
+            /// </summary>
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine(feet + " feet you requested to be converted  is " + miles + " miles!");
+            Console.WriteLine("-------------------------------------------------------------");
+
         }
     }
 }
