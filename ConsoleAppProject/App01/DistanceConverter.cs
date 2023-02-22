@@ -46,10 +46,10 @@ namespace ConsoleAppProject.App01
         {
             OutputHeading();
             fromUnit = SelectUnit(" Select the from distance unit!"); ;
-            toUnit = SelectUnit(" Select th to distance unit!");
+            toUnit = SelectUnit(" Select the to distance unit!");
 
             Console.WriteLine($"Converting {fromUnit} to {toUnit}");
-            fromDistance = InputDistance(" Enter the number of (fromUnit)");
+            fromDistance = InputDistance($" Enter the number of {fromUnit}");
             CalculateDistance();
             OutputDistance();
         }
@@ -85,12 +85,13 @@ namespace ConsoleAppProject.App01
         {
             string choice = DisplayChoice(prompt);
             string unit = ExecuteChoice(choice);
-            Console.WriteLine($"You have chose {unit}");
+            Console.WriteLine($"You have chosen {unit}");
             return unit;
         }
         //method using switch to select choice
         private static string ExecuteChoice(string choice)
         {
+            string unit = "Invalid Choice. Please enter a valid choice";
             if (choice == "1")
             {
                 return FEET;
@@ -103,7 +104,7 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-            return null;
+            return unit;
         }
         private static string DisplayChoice(string prompt)
         {
