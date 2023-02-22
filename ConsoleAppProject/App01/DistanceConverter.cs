@@ -19,7 +19,7 @@ namespace ConsoleAppProject.App01
         /// <author>
         /// Marius Daniel Boncica Version 1
         /// </author>
-        /// declare variables
+        /// declare constant variables
 
         public const int FEET_IN_MILES = 5280;
         public const double METERS_IN_MILES = 1609.34;
@@ -28,7 +28,7 @@ namespace ConsoleAppProject.App01
         public const string FEET = "Feet";
         public const string METERS = "Meters";
         public const string MILES = "Miles";
-
+        //use private string for input values
         private double fromDistance;
         private double toDistance;
 
@@ -41,7 +41,7 @@ namespace ConsoleAppProject.App01
             toUnit = FEET;
 
         }
-
+        //convert distance method
         public void ConvertDistance()
         {
             OutputHeading();
@@ -53,7 +53,7 @@ namespace ConsoleAppProject.App01
             CalculateDistance();
             OutputDistance();
         }
-
+        //method to input distance
         private double InputDistance(string prompt)
         {
             Console.WriteLine(prompt);
@@ -61,11 +61,14 @@ namespace ConsoleAppProject.App01
             return Convert.ToDouble(value);
 
         }
+        //method to output a message output of distance
         public void OutputDistance()
         {
             Console.WriteLine($"{fromDistance} {fromUnit} +" +
                 $" is {toDistance} {toUnit}");
         }
+
+        //method to convert miles to feet and feet to miles
         public void CalculateDistance()
         {
             if (fromUnit == MILES && toUnit == FEET)
@@ -77,6 +80,7 @@ namespace ConsoleAppProject.App01
                 toDistance = fromDistance / FEET_IN_MILES;
             }
         }
+
         public string SelectUnit(string prompt)
         {
             string choice = DisplayChoice(prompt);
@@ -84,6 +88,7 @@ namespace ConsoleAppProject.App01
             Console.WriteLine($"You have chose {unit}");
             return unit;
         }
+        //method using switch to select choice
         private static string ExecuteChoice(string choice)
         {
             if (choice == "1")
