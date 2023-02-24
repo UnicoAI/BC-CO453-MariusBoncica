@@ -23,7 +23,7 @@ namespace ConsoleAppProject.App01
 
         public const int FEET_IN_MILES = 5280;
         public const double METERS_IN_MILES = 1609.34;
-        public const double FEET_IN_METERS = 3.28004;
+        public const double FEET_IN_METERS = 3.28084;
 
         public const string FEET = "Feet";
         public const string METERS = "Meters";
@@ -75,19 +75,24 @@ namespace ConsoleAppProject.App01
             }
             else if (fromUnit == FEET && toUnit == METERS)
             {
-                toDistance = fromDistance * FEET_IN_METERS;
+                toDistance = fromDistance / FEET_IN_METERS;
             }
             else if (fromUnit == METERS && toUnit == FEET)
             {
-                toDistance = fromDistance / FEET_IN_METERS;
+                toDistance = fromDistance * FEET_IN_METERS;
             }
             else if (fromUnit == MILES && toUnit == METERS)
             {
-                toDistance = fromDistance / METERS_IN_MILES;
+                toDistance = fromDistance * METERS_IN_MILES;
             }
             else if (fromUnit == METERS && toUnit == MILES)
             {
-                toDistance = fromDistance * METERS_IN_MILES;
+                toDistance = fromDistance / METERS_IN_MILES;
+            }
+          
+            else if (fromUnit == toUnit)
+            {
+                toDistance = fromDistance;
             }
         }
         //method to output a message output of distance
