@@ -41,6 +41,15 @@ namespace ConsoleAppProject.App01
             toUnit = FEET;
 
         }
+
+        public DistanceUnits DistanceUnits
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         //convert distance method
         public void ConvertDistance()
         {
@@ -57,9 +66,11 @@ namespace ConsoleAppProject.App01
         //method to input distance
         private double InputDistance(string prompt)
         {
+            
             Console.WriteLine(prompt);
             string value = Console.ReadLine();
-            return Convert.ToDouble(value);
+
+           return Convert.ToDouble(value); 
 
         }
         //method to convert miles to feet and feet to miles
