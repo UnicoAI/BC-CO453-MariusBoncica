@@ -29,16 +29,16 @@ namespace ConsoleAppProject.App01
         public const string METERS = "Meters";
         public const string MILES = "Miles";
         //use private string for input values
-        private double fromDistance;
-        private double toDistance;
+        public double FromDistance { get; set; }
+        public double ToDistance { get; set; }
 
-        private string fromUnit;
-        private string toUnit;
+        public string FromUnit { get; set; }
+        public string ToUnit { get; set; }
 
         public DistanceConverter()
         {
-            fromUnit = MILES;
-            toUnit = FEET;
+            FromUnit = MILES;
+            ToUnit = FEET;
 
         }
 
@@ -54,11 +54,11 @@ namespace ConsoleAppProject.App01
         public void ConvertDistance()
         {
             OutputHeading();
-            fromUnit = SelectUnit(" Select the from distance unit!"); ;
-            toUnit = SelectUnit(" Select the to distance unit!");
+            FromUnit = SelectUnit(" Select the from distance unit!"); ;
+            ToUnit = SelectUnit(" Select the to distance unit!");
 
-            Console.WriteLine($"Converting {fromUnit} to {toUnit}");
-            fromDistance = InputDistance($" Enter the number of {fromUnit}");
+            Console.WriteLine($"Converting {FromUnit} to {ToUnit}");
+            FromDistance = InputDistance($" Enter the number of {FromUnit}");
             CalculateDistance();
             OutputDistance();
             ConvertDistance();
@@ -76,41 +76,41 @@ namespace ConsoleAppProject.App01
         //method to convert miles to feet and feet to miles
         public void CalculateDistance()
         {
-            if (fromUnit == MILES && toUnit == FEET)
+            if (FromUnit == MILES && ToUnit == FEET)
             {
-                toDistance = fromDistance * FEET_IN_MILES;
+                ToDistance = FromDistance * FEET_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == MILES)
+            else if (FromUnit == FEET && ToUnit == MILES)
             {
-                toDistance = fromDistance / FEET_IN_MILES;
+                ToDistance = FromDistance / FEET_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == METERS)
+            else if (FromUnit == FEET && ToUnit == METERS)
             {
-                toDistance = fromDistance / FEET_IN_METERS;
+                ToDistance = FromDistance / FEET_IN_METERS;
             }
-            else if (fromUnit == METERS && toUnit == FEET)
+            else if (FromUnit == METERS && ToUnit == FEET)
             {
-                toDistance = fromDistance * FEET_IN_METERS;
+                ToDistance = FromDistance * FEET_IN_METERS;
             }
-            else if (fromUnit == MILES && toUnit == METERS)
+            else if (FromUnit == MILES && ToUnit == METERS)
             {
-                toDistance = fromDistance * METERS_IN_MILES;
+                ToDistance = FromDistance * METERS_IN_MILES;
             }
-            else if (fromUnit == METERS && toUnit == MILES)
+            else if (FromUnit == METERS && ToUnit == MILES)
             {
-                toDistance = fromDistance / METERS_IN_MILES;
+                ToDistance = FromDistance / METERS_IN_MILES;
             }
           
-            else if (fromUnit == toUnit)
+            else if (FromUnit == ToUnit)
             {
-                toDistance = fromDistance;
+                ToDistance = FromDistance;
             }
         }
         //method to output a message output of distance
         public void OutputDistance()
         {
-            Console.WriteLine($"{fromDistance} {fromUnit} " +
-                $" is {toDistance} {toUnit}");
+            Console.WriteLine($"{FromDistance} {FromUnit} " +
+                $" is {ToDistance} {ToUnit}");
         }
 
        
@@ -139,7 +139,9 @@ namespace ConsoleAppProject.App01
             {
                 return MILES;
             }
-            return unit;
+            
+                return unit;
+               
 
         }
         private static string DisplayChoice(string prompt)
