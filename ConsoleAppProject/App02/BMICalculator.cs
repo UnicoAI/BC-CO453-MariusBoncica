@@ -1,192 +1,224 @@
 ﻿using ConsoleAppProject.Helpers;
 using System;
-using System.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleAppProject.App02
 {
     /// <summary>
-    /// This program calculates a user's BMI (Body Mass Index) from their Weight and Height, it then assigns a Weight Status Category derived from the World Health Organisation.
-    /// </summary>
+    /// BMI Calculator
     /// <author>
-    /// Marius Boncica Version 1.0
+    /// Marius Boncica
+    /// Version2
     /// </author>
     public class BMICalculator
     {
-        // Variables
-        public double Bmi { get; set; }
+        public const double BMI_UNDERWEIGHT = 18.5;
+        public const double BMI_NORMAL = 18.5;
+        public const int BMI_OVERWEIGHT = 25;
+        public const int BMI_OBESE_I = 30;
+        public const int BMI_OBESE_II = 35;
+        public const int BMI_OBESE_III = 40;
 
-        // Metric
+        public const string UNDERWEIGHT = "Underweight";
+        public const string NORMAL = "Normal";
+        public const string OVERWEIGHT = "Overweight";
+        public const string CLASS_I_OBESE = "Class I Obese";
+        public const string CLASS_II_OBESE = "Class II Obese";
+        public const string CLASS_III_OBESE = "Class III Obese";
+
+        public double Feet { get; set; }
+        public double Grams { get; set; }
+        public double Inches { get; set; }
+        public double Metres { get; set; }
+        public double Centimetres { get; set; }
+        public double Stones { get; set; }
+        public double Pounds { get; set; }
         public double Kilograms { get; set; }
-        public int Centimetres { get; set; }
-        private double metres;
 
-        // Imperial
-        public int Pounds { get; set; }
-        public int Inches { get; set; }
+        public UnitChoice UnitChoice { get; set; }
 
-        // Constants
-        public const double Underweight = 0.00;
-        public const double Normal = 18.50;
-        public const double Overweight = 25.00;
-        public const double ObeseClass1 = 30.00;
-        public const double ObeseClass2 = 35.00;
-        public const double ObeseClass3 = 40.00;
+        public string Category { get; set; }
 
-
-        // Enumerations
-        public MeasurementSystems Unit { get; set; } // Measurement System to use (Metric or Imperial)
+        public double BMI { get; set; }
 
         /// <summary>
-        /// Runs the required functions in the correct order, allowing for the program to operate correctly.
-        /// </summary>
+        /// Runs the application though run method and displays in cli
+        /// allows user to input their measurements and calculate their bmi to be displayed
+        /// <author>
+        /// Marius Boncica
+        /// </author>
         public void Run()
         {
-            SelectUnit();
+            ConsoleHelper.OutputHeading("BMI Calulator");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.WriteLine();
+            UnitChoice = SelectUnit(" Please Choose whether to use Imperial or Metric Units");
+            Console.WriteLine($" You have chosen {UnitChoice} Units");
+            Console.WriteLine();
+
+            InputMeasurement();
+
+            CalculateBMI();
+
+            OutputBMI();
         }
 
-        public MeasurementSystems SelectUnit(string prompt)
+        /// <summary>
+        /// <author>
+        /// If the user selects imperial and gives the user the inputs they need to define
+        /// weight and height
+        /// Feet/inches and stones/pounds
+        /// Marius Boncica
+        /// </author>
+        private void InputMeasurement()
         {
+            if (UnitChoice.Equals(UnitChoice.Imperial))
+            {
+                Console.WriteLine(
+                    $" Please enter your Height in {UnitsList.Feet} and " + $"{UnitsList.Inches}"
+                );
+                Feet = ConsoleHelper.InputNumber($" {UnitsList.Feet} > ");
+                Inches = ConsoleHelper.InputNumber($" {UnitsList.Inches} > ");
+                Console.WriteLine();
+                Console.WriteLine(
+                    $" Please enter your Weight in {UnitsList.Stones} and" + $" {UnitsList.Pounds}"
+                );
+                Stones = ConsoleHelper.InputNumber($" {UnitsList.Stones} > ");
+                Pounds = ConsoleHelper.InputNumber($" {UnitsList.Pounds} > ");
+            }
+
+            if (UnitChoice.Equals(UnitChoice.Metric))
+            {
+                Console.WriteLine(
+                    $" Please enter your Height in {UnitsList.Metres} and "
+                        + $"{UnitsList.Centimetres}"
+                );
+                Metres = ConsoleHelper.InputNumber($" {UnitsList.Metres} > ");
+                Centimetres = ConsoleHelper.InputNumber($" {UnitsList.Centimetres} > ");
+                Console.WriteLine();
+                Console.WriteLine(
+                    $" Please enter your Weight in {UnitsList.Kilograms} and"
+                        + $" {UnitsList.Grams}"
+                );
+                Kilograms = ConsoleHelper.InputNumber($" {UnitsList.Kilograms} > ");
+                Grams = ConsoleHelper.InputNumber($" {UnitsList.Grams} > ");
+            }
+        }
+
+        /// <summary>
+        /// <author>
+        /// Selecter for imperial or metric unit
+        ///Marius Boncica
+        /// </author>
+        private UnitChoice SelectUnit(string prompt)
+        {
+            string[] choices = { $" {UnitChoice.Imperial}", $" {UnitChoice.Metric}" };
+
             Console.WriteLine(prompt);
             Console.WriteLine();
+            int choice = ConsoleHelper.SelectChoice(choices);
 
-            Console.WriteLine($" 1. {MeasurementSystems.Metric}");
-            Console.WriteLine($" 2. {MeasurementSystems.Imperial}");
-            Console.WriteLine();
-
-            Console.Write(prompt);
-
-            string choice = Console.ReadLine();
-            Console.WriteLine();
-
-            if (choice == "1")
-            {
-                Console.WriteLine($"Using: {MeasurementSystems.Metric}");
-                return MeasurementSystems.Metric;
-            }
-
-            else if (choice == "2")
-            {
-                Console.WriteLine($"Using: {MeasurementSystems.Imperial}");
-                return MeasurementSystems.Imperial;
-            }
-            else
-            {
-                Console.WriteLine("ERROR: Input Invalid");
-                return MeasurementSystems.NoUnit;
-            }
-        }
-        /// <summary>
-        /// Determines which Measurement System to use based on the User Selection
-        /// </summary>
-        public void SelectUnit()
-        {
-            Unit = SelectUnit("Enter Measurement System to use > ");
-
-            if (Unit == MeasurementSystems.Metric)
-            {
-                CalculateMetric();
-            }
-            else if (Unit == MeasurementSystems.Imperial)
-            {
-                CalculateImperial();
-            }
-            else
-            {
-                Console.WriteLine("ERROR: Please select a valid unit");
-            }
-        }
-        /// <summary>
-        /// Calculates the Weight Status using Metric System from user inputted Weight and Height measurements
-        /// </summary>
-        public void CalculateMetric()
-        {
-            Centimetres = (int)ConsoleHelper.InputNumber("Enter Height in Centimetres > ");
-            Kilograms = ConsoleHelper.InputNumber("Enter Weight in Kg > ");
-            metres = (double)Centimetres / 100;
-            Bmi = Kilograms / (metres * metres);
-            GetHealthMessage();
+            return ExecuteChoice(choice);
         }
 
         /// <summary>
-        /// Calculates the Weight Status using Imperial System from user inputted Weight and Height measurements
-        /// </summary>
-        public void CalculateImperial()
+        /// <author>
+        /// allows the user to selct which unit to use
+        /// 
+        /// </author>
+        private static UnitChoice ExecuteChoice(int choice)
         {
-            Console.WriteLine("Enter your Height in Feet and Inches");
-            Inches = (int)ConsoleHelper.InputNumber("Enter Height in Inches > ");
-            Pounds = (int)ConsoleHelper.InputNumber("Enter Weight in Pounds > ");
-            Bmi = (double)Pounds * 703 / (Inches * Inches);
-            GetHealthMessage();
+            switch (choice)
+            {
+                case 1:
+                    return UnitChoice.Imperial;
+                case 2:
+                    return UnitChoice.Metric;
+
+                default:
+                    return UnitChoice.NoUnit;
+            }
         }
 
         /// <summary>
-        /// Outputs the Health Message based on the Users BMI.
-        /// </summary>
-        public void GetHealthMessage()
+        /// <author>
+        /// maths for converting each unit
+        /// 
+        /// </author>
+        public void CalculateBMI()
         {
-            OutputHeading();
-            if (Bmi < Underweight) // Underweight Range
+            if (UnitChoice.Equals(UnitChoice.Imperial))
             {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Underweight BMI Range.");
+                Inches = (Feet * 12) + Inches;
+                BMI = ((Stones * 14) + Pounds) * 703 / (Inches * Inches);
             }
 
-            else if (Bmi <= Normal) // Normal Range
+            if (UnitChoice.Equals(UnitChoice.Metric))
             {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Normal BMI Range.");
+                Metres = Centimetres / 100;
+                BMI = Kilograms / (Metres * Metres);
             }
 
-            else if (Bmi <= Overweight) // Overweight Range
-            {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Overweight BMI Range.");
-            }
-
-            else if (Bmi <= ObeseClass1) // Obese (Class I) Range
-            {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Obese (Class I) BMI Range.");
-            }
-
-            else if (Bmi <= ObeseClass2) // Obese (Class II) Range
-            {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Obese (Class II) BMI Range.");
-            }
-
-            else if (Bmi <= ObeseClass3) // Obese (Class III) Range
-            {
-                Console.WriteLine($"Your BMI is {Bmi:0.00}, " + $"You are in the Obese Class (III) BMI Range.");
-            }
-            OutputBameDisclosure();
+            CatagoriesBMI();
         }
 
         /// <summary>
-        /// Outputs a Disclosure for BAME Groups.
-        /// </summary>
-        public void OutputBameDisclosure()
+        /// <author>
+        /// weight Catagories
+        /// 
+        /// </author>
+        public void CatagoriesBMI()
         {
-            Console.WriteLine("---------------------------");
-            Console.WriteLine("        BAME Notice        ");
-            Console.WriteLine("---------------------------");
-            Console.WriteLine();
-            Console.WriteLine("Notice:");
-            Console.WriteLine();
-            Console.WriteLine("If you belong to a BAME Ethnicity Group, the BMI Calculator could\nunderestimate or overestimate weight-related health risks.\nYou should contact your GP if you have any concerns.");
-            Console.WriteLine();
+            if (BMI < BMI_UNDERWEIGHT)
+            {
+                Category = UNDERWEIGHT;
+            }
+            else if (BMI >= BMI_NORMAL && BMI < BMI_OVERWEIGHT)
+            {
+                Category = NORMAL;
+            }
+            else if (BMI >= BMI_OVERWEIGHT && BMI < BMI_OBESE_I)
+            {
+                Category = OVERWEIGHT;
+            }
+            else if (BMI >= BMI_OBESE_I && BMI < BMI_OBESE_II)
+            {
+                Category = CLASS_I_OBESE;
+            }
+            else if (BMI >= BMI_OBESE_II && BMI < BMI_OBESE_III)
+            {
+                Category = CLASS_II_OBESE;
+            }
+            else if (BMI >= BMI_OBESE_III)
+            {
+                Category = CLASS_III_OBESE;
+            }
         }
 
         /// <summary>
-        /// Outputs a Heading showing the Program Name and the Author.
-        /// </summary>
-        public void OutputHeading()
+        /// <author>
+        /// out to display the users bmi
+        /// 
+        /// </author>
+        public void OutputBMI()
         {
             Console.WriteLine();
-            Console.WriteLine("--------------------------");
-            Console.WriteLine("  App02: BMI Calculator   ");
-            Console.WriteLine("   by Marius Daniel  ");
-            Console.WriteLine("--------------------------");
-            Console.WriteLine();
-            Console.WriteLine("What is BMI?");
-            Console.WriteLine();
-            Console.WriteLine("BMI (Body Mass Index) is a measure of your weight compared to your height,\nwhich allows us to work out which WHO Weight Status Category you fit into,\ngiving you an idea of how healthy you are. ");
-            Console.WriteLine();
+            Console.WriteLine(
+                $" Your BMI is {BMI}. "
+                    + $"You are in the {Category} Range"
+                    + "\n If your are BAME, you could be at a higher risk!"
+                    + "\n Children who have obesity are more likely to have High blood pressure and high cholesterol"
+                    + "\n Adults 23.0 have an increased risk - Adults 27.5 have a high risk"
+                    + "\n WHO Weight Status / BMI kg/m2"
+                    + "\n Underweight       / 18.5 - 24.9"
+                    + "\n Overweight        / 25.0 - 29.9"
+                    + "\n Obese Class I	   / 30.0 - 34.9"
+                    + "\n Obese Class II	   / 35.0 - 39.9"
+                    + "\n Obese Class III   / >= 40.0"
+            );
+            
         }
+
     }
 }

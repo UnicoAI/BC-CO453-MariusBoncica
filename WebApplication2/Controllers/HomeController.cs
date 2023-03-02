@@ -20,18 +20,14 @@ namespace WebApplication2.Controllers
             }
             return View(converter);
         }
-        [HttpGet]
+       
         public IActionResult BMICalculator()
         {
            
             return View();
         }
-        [HttpPost]
-        public IActionResult BMICalculator(BMICalculator bmi)
-        {
-
-            return View();
-        }
+       
+      
         public IActionResult Privacy()
         {
             return View();

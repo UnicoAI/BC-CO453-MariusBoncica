@@ -5,7 +5,7 @@ namespace ConsoleAppProject.App02
     /// <summary>
     /// List of Measurement Systems used to calculate BMI
     /// </summary>
-    public enum MeasurementSystems
+    public enum UnitChoice
     {
         [Display(Name = "No Unit")]
         NoUnit,
