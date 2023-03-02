@@ -1,0 +1,42 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.tophead {
+   
+    max-width: 400px;
+    padding: 10px;
+    bottom: 0px;
+    background-color: -webkit-linear-gradient(left, #a445b2, #fa4299);
+    border: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+    color: rgb(28, 4, 70)
+
+}
+.btn {
+    width: 100%;
+    border: 50px;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+    color: rgb(28, 4, 70);
+    cursor: pointer;
+    width: 49%;
+    margin-bottom: 10px;
+    min-height: 50px;
+    opacity: 0.8;
+}

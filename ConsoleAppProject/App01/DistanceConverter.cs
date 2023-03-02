@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace ConsoleAppProject.App01
+﻿namespace ConsoleAppProject.App01
 {
     /// <summary>
     ///App01 Bucks New 
