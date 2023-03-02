@@ -1,6 +1,8 @@
 ﻿using ConsoleAppProject.Helpers;
 using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace ConsoleAppProject.App02
 {
@@ -49,7 +51,7 @@ namespace ConsoleAppProject.App02
         /// </author>
         public void Run()
         {
-            ConsoleHelper.OutputHeading("BMI Calulator");
+            ConsoleHelper.OutputHeading("BMI Calculator");
             Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.WriteLine();
@@ -60,8 +62,8 @@ namespace ConsoleAppProject.App02
             InputMeasurement();
 
             CalculateBMI();
-
-            OutputBMI();
+            Console.WriteLine(GetHealthMessage());
+           Console.WriteLine(OutputBMI());
         }
 
         /// <summary>
@@ -201,13 +203,12 @@ namespace ConsoleAppProject.App02
         /// out to display the users bmi
         /// 
         /// </author>
-        public void OutputBMI()
+        public string OutputBMI()
         {
-            Console.WriteLine();
-            Console.WriteLine(
-                $" Your BMI is {BMI}. "
-                    + $"You are in the {Category} Range"
-                    + "\n If your are BAME, you could be at a higher risk!"
+            StringBuilder message = new StringBuilder("\n");
+           message.Append($"Your BMI is {BMI:0.00}+" +
+                $"You are {Category}!"+
+                    "\n If your are BAME, you could be at a higher risk!"
                     + "\n Children who have obesity are more likely to have High blood pressure and high cholesterol"
                     + "\n Adults 23.0 have an increased risk - Adults 27.5 have a high risk"
                     + "\n WHO Weight Status / BMI kg/m2"
@@ -217,7 +218,56 @@ namespace ConsoleAppProject.App02
                     + "\n Obese Class II	   / 35.0 - 39.9"
                     + "\n Obese Class III   / >= 40.0"
             );
+            return message.ToString();
             
+        }
+        public string GetHealthMessage()
+        {
+            StringBuilder message = new StringBuilder("\n");    
+            if (BMI< BMI_UNDERWEIGHT)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" +
+                $"You are underweight!");
+
+            }
+            else if (BMI <= BMI_OVERWEIGHT)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" +
+                $"You are overweight!");
+
+            }
+            else if (BMI <= BMI_NORMAL)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" +
+                $"You are in the normal range!");
+
+            }
+            else if (BMI <= BMI_NORMAL)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are in the normal range!");
+            }
+            else if (BMI <= BMI_NORMAL)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are in the normal range!");
+            }
+            else if (BMI <= BMI_NORMAL)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are in the normal range!");
+            }
+            else if (BMI <= BMI_OBESE_I)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are Obese class I!");
+            }
+            else if (BMI <= BMI_OBESE_II)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are Obese class II ");
+            }
+            else if (BMI <= BMI_OBESE_III)
+            {
+                message.Append($"Your BMI is {BMI:0.00}+" + $"You are Obese class III ");
+            }
+            return
+            message.ToString();
         }
 
     }

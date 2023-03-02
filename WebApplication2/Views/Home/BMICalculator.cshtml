@@ -19,21 +19,24 @@
         </p>
         <p>
             <input type="number" placeholder="Feet" asp-for="@Model.Feet" />
-            <input type="number" placeholder="Inches"  asp-for="Inches" />
+            <input type="number" placeholder="Inches"  asp-for="@Model.Inches" />
             
         </p>
         <p>
-            <input type="number" placeholder="Centimeters" asp-for="Centimetres" />
+            <input type="number" placeholder="Centimeters" asp-for="@Model.Centimetres" />
         </p>
         <h2>Weight</h2>
         <p>
             Please enter your current height in whole numbers using metric or imperial units
         </p>
         <p>
-            <input type="number" placeholder="Stone" asp-for="Stones" value="" />
-            <input type="number" placeholder="Pounds" asp-for="Pounds" value="" />
+            <input type="number" placeholder="Stone" asp-for="@Model.Stones" value="4" />
+            <input type="number" placeholder="Pounds" asp-for="@Model.Pounds" value="2" />
         </p>
-        
+        <p>
+            <input type="number" placeholder="Kilograms" asp-for="@Model.Kilograms" value="60" />
+
+        </p>
         <p>
             <button class="btn" type="submit">Calculate</button>
         </p>
