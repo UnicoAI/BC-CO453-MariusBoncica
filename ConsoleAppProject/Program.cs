@@ -24,7 +24,7 @@ namespace ConsoleAppProject
             }
         }
         private static DistanceConverter converter = new DistanceConverter();
-        private static BMI calculator = new BMI();
+        private static BMICalculator calculator = new BMICalculator();
         
         
 

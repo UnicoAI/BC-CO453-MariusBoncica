@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace ConsoleAppProject.Helpers
 {
 
@@ -11,7 +12,7 @@ namespace ConsoleAppProject.Helpers
     /// There are methods for outputting a main heading
     /// and a title.
     /// <author>
-    /// Marius Boncica 2023 CO453
+    /// Created by Derek Peacock (2021), Modified by Marius Boncica (2023)
     /// </author>
     /// </summary>
     public static class ConsoleHelper
@@ -30,7 +31,7 @@ namespace ConsoleAppProject.Helpers
 
             // Get the user's choice
 
-            int choiceNo = (int)InputNumber("\n Please enter your choice > ", 
+            int choiceNo = (int)InputNumber("\n Please enter your choice > ",
                                             1, choices.Length);
             return choiceNo;
         }
@@ -121,15 +122,13 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         public static void OutputHeading(string heading)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
 
-            Console.WriteLine("\n ---------------------------------");
-            Console.WriteLine($"    {heading}          ");
-            Console.WriteLine("     by Marius Boncica          ");
-            Console.WriteLine(" ---------------------------------" +
-                "\n");
+            Console.WriteLine($"\n -------------------- \n {heading} \n by Marius Boncica \n -------------------- ");
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -143,7 +142,7 @@ namespace ConsoleAppProject.Helpers
             Console.WriteLine($"\n {title}");
             Console.Write(" ");
 
-            for(int count = 0; count <= title.Length; count++)
+            for (int count = 0; count <= title.Length; count++)
             {
                 Console.Write("-");
             }

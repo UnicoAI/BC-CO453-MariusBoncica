@@ -1,0 +1,40 @@
+﻿@model ConsoleAppProject.App02.BMICalculator;
+@using ConsoleAppProject.App02;
+@{
+    ViewData["Title"] = "Marius Boncica BMI Calculator";
+}
+<header>
+    <h1 class="tophead">
+        BMI Calculator 
+        
+    </h1>
+    <h2>by Marius Boncica</h2>
+   
+</header>
+<section >
+    <form class="inputbox" method="post">
+        <h2>Height</h2>
+        <p>
+            Please enter your current height in whole numbers using metric or imperial units
+        </p>
+        <p>
+            <input type="number" placeholder="Feet" asp-for="@Model.Feet" />
+            <input type="number" placeholder="Inches"  asp-for="Inches" />
+            
+        </p>
+        <p>
+            <input type="number" placeholder="Centimeters" asp-for="Centimetres" />
+        </p>
+        <h2>Weight</h2>
+        <p>
+            Please enter your current height in whole numbers using metric or imperial units
+        </p>
+        <p>
+            <input type="number" placeholder="Stone" asp-for="Stones" value="" />
+            <input type="number" placeholder="Pounds" asp-for="Pounds" value="" />
+        </p>
+        <p>
+            <button class="btn" type="submit">Calculate</button>
+        </p>
+    </form>
+</section>
