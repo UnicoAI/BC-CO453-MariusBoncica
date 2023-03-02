@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ConsoleAppProject.App01;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication2.Models;
 
@@ -11,9 +12,12 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
-        public IActionResult DistanceConverter()
-        {
-            return View();
+        public IActionResult DistanceConverter(DistanceConverter converter)
+        {if(converter.FromDistance > 0)
+            {
+                converter.CalculateDistance();
+            }
+            return View(converter);
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
-﻿namespace ConsoleAppProject.App01
+﻿using System;
+namespace ConsoleAppProject.App01
 {
     /// <summary>
     ///App01 Bucks New 
@@ -58,7 +59,7 @@
             FromDistance = InputDistance($" Enter the number of {FromUnit}");
             CalculateDistance();
             OutputDistance();
-            ConvertDistance();
+           
         }
         //method to input distance
         private double InputDistance(string prompt)

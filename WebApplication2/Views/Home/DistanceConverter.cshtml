@@ -1,8 +1,60 @@
-﻿@{
-    ViewData["Title"] = " Marius Boncica Distance Converter";
+﻿@model ConsoleAppProject.App01.DistanceConverter;
+@using ConsoleAppProject.App01;
+@{
+    ViewData["Title"] = "Marius Boncica Distance Converter";
 }
 <header>
-    <h1>
+    <h1 class="tophead">
         Distance Converter
     </h1>
 </header>
+<form  method="post">
+    <h2 class="inputbox">Convert from</h2>
+    <p>
+        <label class="backpanel" >From Unit:</label>
+        <select asp-for="@Model.FromUnit">
+            <option>@DistanceConverter.MILES</option>
+        <option>@DistanceConverter.FEET</option>
+        <option>@DistanceConverter.METERS</option>
+   </select>
+    </p>
+    <p>
+        @if(Model.FromDistance == 0)
+        {
+            <input type="text" asp-for="@Model.FromDistance" value=""
+    placeholder="From Distance" required/>
+        }
+        else
+        {
+            <input type="text" asp-for="@Model.FromDistance" value=""
+                   placeholder="From Distance" required />
+
+        }
+    </p>
+    <h2 class="inputbox">Convert to:</h2>
+    <p>
+        <label class="backpanel">To Unit:</label>
+        <select asp-for="@Model.FromUnit">
+            <option class="btn">@DistanceConverter.MILES</option>
+            <option class="btn">@DistanceConverter.FEET</option>
+            <option class="btn">@DistanceConverter.METERS</option>
+        </select>
+    </p>
+    <p>
+        @if (Model.ToDistance == 0)
+        {
+            <input type="text" class="backpanel" asp-for="@Model.ToDistance" value=""
+                   placeholder="ToDistance" readonly />
+        }
+        else
+        {
+            <input type="text" class="backpanel" asp-for="@Model.ToDistance" value="@Model.ToDistance.ToString("0.00")"
+                   placeholder="ToDistance" readonly />
+
+        }
+    </p>
+    <p>
+        <button class="btn" type="submit">Calculate</button>
+    </p>
+</form>
+
