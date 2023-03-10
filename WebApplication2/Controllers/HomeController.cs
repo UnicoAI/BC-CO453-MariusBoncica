@@ -2,10 +2,7 @@
 using ConsoleAppProject.App02;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.Runtime.Intrinsics.X86;
 using WebApplication2.Models;
-using WebApplication2.Views.Home;
 
 namespace WebApplication2.Controllers
 {
