@@ -45,7 +45,7 @@ namespace ConsoleAppProject.App03
         public void OutputMarks() 
         {  throw new NotImplementedException(); } 
         public Grades ConvertToGrade()
-        { throw new NotImplementedException(); };  
+        { throw new NotImplementedException(); } 
         public void CalculateStats()
         { throw new NotImplementedException();}    
 
