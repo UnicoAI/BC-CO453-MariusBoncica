@@ -1,91 +1,177 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
+
 using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App03
 {
     /// <summary>
-    /// At the moment this class just tests the
-    /// Grades enumeration names and descriptions
+    /// Marius Boncica
+    /// Version 2 Student Marks Application
     /// </summary>
     public class StudentGrades
     {
-        public string Name;
-        public string Surname;
-        public int Marks;
-        public string A, B, C, D, F;
-        public const int Max_Students = 10;
+        public string[] Students { get; set; }
+        public int[] Marks { get; set; }
+        public int[] GradeProfile { get; set; }
+
+        public const int TotalStudents = 10;
+
+        public int Total { get; set; }
+        public double Mean { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
 
         public void Run()
         {
-            Console.WriteLine("    Student Marks Application   ");
-            ConvertToMarks();
-            Names();
-            GetStudentMarks();
+            ConsoleHelper.OutputHeading("Student Grades");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            OutputMenuChoices();
         }
-        public string ConvertToMarks()
+        public StudentGrades()
         {
-            switch (Marks)
+            Students = new string[TotalStudents]
             {
-                case int n when (n >= 70):
-                    return "A";
-                case int n when (n >= 60):
-                    return "B";
-                case int n when (n >= 50):
-                    return "C";
-                case int n when (n >= 40):
-                    return "D";
-                case int n when (n >= 0):
-                    return "F";
-                default:
-                    return "Invalid Mark Please Try Again";
+                "Daniel", "Boncica", "Marius", "Boris", "Vladimir", "Biden", "Zelensky", "Sara", "Dave", "Richard"
+            };
+            Marks = new int[]
+            {
+                100, 70, 60, 20, 60, 12, 60, 40, 40, 40
+            };
+
+            GradeProfile = new int[5];
+        }
+
+        public void OutputMenuChoices()
+        {
+            string[] choices =
+            {
+                "Input Marks", "Mean Mark", "Grade Percentage", "Min Max Mark", "Exit"
+            };
+
+            int choice;
+            choice = ExecuteChoice(choices);
+        }
+
+        private int ExecuteChoice(string[] choices)
+        {
+            int choice;
+            do
+            {
+                choice = ConsoleHelper.SelectChoice(choices);
+                Console.WriteLine();
+
+                switch (choice)
+                {
+                    case 1:
+                        InputMarks();
+                        OutputGrades();
+                        break;
+                    case 2:
+                        MeanMark();
+                        break;
+                    case 3:
+                        GradePercentage();
+                        break;
+                    case 4:
+                        MinMaxmark();
+                        break;
+                    case 5:
+                        exit();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            while (choice != 5);
+            return choice;
+        }
+
+        public Grades MarkToGrade(int mark)
+        {
+            if (mark >= 0 && mark < 39)
+            {
+                return App03.Grades.F;
+            }
+            if (mark >= 40 && mark < 49)
+            {
+                return App03.Grades.D;
+            }
+            if (mark >= 50 && mark < 59)
+            {
+                return App03.Grades.C;
+            }
+            if (mark >= 60 && mark < 69)
+            {
+                return App03.Grades.B;
+            }
+            else
+            {
+                return App03.Grades.A;
             }
         }
-        public string Names()
+
+        private void InputMarks()
         {
-            return $"{Name}  {Surname}";
+            Console.WriteLine("Please Enter a Mark for Each of the Students \n");
+            int index = 0;
+
+            foreach (string name in Students)
+            {
+                int mark = (int)ConsoleHelper.InputNumber($"{name} insert mark > ", 0, 100);
+                Marks[index] = mark;
+            };
         }
-        public void GetStudentMarks()
+
+        public void MeanMark()
         {
-            List<StudentGrades> studentMarksList = new List<StudentGrades>();
-            int min = int.MaxValue;
-            int max = int.MinValue;
-            double mean = 0;
-            for (int i = 0; i < Max_Students; i++)
+            foreach (int mark in Marks)
             {
-                Console.WriteLine("Enter the name of the student:   ");
-                string name = Console.ReadLine();
-
-                StudentGrades sg = new StudentGrades();
-
-                Name = name;
-
-
-                Console.WriteLine("Enter Student Marks:  ");
-                int marks = Convert.ToInt32(Console.ReadLine());
-                sg.Marks = Marks;
-                studentMarksList.Add(sg);
-
-                if (marks > max)
-                    max = marks;
-                if (min > max)
-                    min = max;
-                mean += marks;
-            }
-            mean = mean / studentMarksList.Count;
-
-            Console.WriteLine("The list of students and their grades:  ");
-            foreach (StudentGrades sg in studentMarksList) { }
-            {
-                Console.WriteLine($"{Names()} Grades: {ConvertToMarks()}");
+                Total += mark;
             }
 
-            Console.WriteLine("The avreage , minimum and maximum marks are:  ");
-            Console.WriteLine($"Mean: {mean}, Min: {min}, Max: {max}");
+            Mean = Total / TotalStudents;
+        }
 
+        static void GradePercentage()
+        {
+            int mark = (int)ConsoleHelper.InputNumber($"Enter Mark > ", 0, 100);
+            int sum = mark;
+            Console.WriteLine($"{mark}%");
+        }
+
+        public void MinMaxmark()
+        {
+            Min = Marks[0];
+            Max = Marks[0];
+            foreach (int mark in Marks)
+            {
+                if (mark < Min)
+                {
+                    Min = mark;
+                }
+                else if (mark > Max)
+                {
+                    Max = mark;
+                }
+            }
+        }
+
+        private void exit()
+        {
+            System.Environment.Exit(1);
+        }
+
+        private void OutputGrades()
+        {
+            for (int i = 0; i < TotalStudents; i++)
+            {
+                int mark = Marks[i];
+                Grades grade = MarkToGrade(mark);
+
+                Console.WriteLine($"{Students[i]} Mark = {Marks[i]} Grade = {grade}");
+            }
         }
     }
 }

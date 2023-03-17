@@ -1,5 +1,6 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
+using ConsoleAppProject.App03;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication2.Models;
@@ -8,7 +9,11 @@ namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+        public IActionResult StudentMarks()
+        {
 
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
@@ -54,8 +59,8 @@ namespace WebApplication2.Controllers
             return View(bmiIndex);
             
         }
-     
 
+       
 
 
         public IActionResult Privacy()
