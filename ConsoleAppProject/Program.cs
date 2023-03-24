@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -26,6 +27,7 @@ namespace ConsoleAppProject
         private static DistanceConverter converter = new DistanceConverter();
         private static BMICalculator calculator = new BMICalculator();
         private static StudentGrades student = new StudentGrades();
+        private static NewsFeed posts = new NewsFeed();
 
 
 
@@ -41,7 +43,7 @@ namespace ConsoleAppProject
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            string[] choices = { "Distance Converter", "BMI Calculator", "Student Marks" };
+            string[] choices = { "Distance Converter", "BMI Calculator", "Student Marks", "Social Posts" };
             ConsoleHelper.SelectChoice(choices);
             Console.WriteLine("Please enter Application Choice!");
             string choice = Console.ReadLine();
@@ -56,6 +58,10 @@ namespace ConsoleAppProject
             else if (choice == "3")
             {
                 student.Run();
+            }
+            else if (choice == "4")
+            {
+                posts.Display();
             }
             else
                 Console.WriteLine("Invalid Choice");
