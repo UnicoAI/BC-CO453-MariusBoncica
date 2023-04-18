@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication2.Models;
@@ -14,6 +15,13 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+       
+        public IActionResult NetworkApp()
+        {
+
+            return View();
+        }
+     
         public IActionResult Index()
         {
             return View();
@@ -67,6 +75,7 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
