@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleAppProject.Helpers;
 
 
 namespace ConsoleAppProject.App04
@@ -20,27 +21,14 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<MessagePost> messages;
-        private readonly List<PhotoPost> photos;
+        private readonly List<Post> posts;
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
         public NewsFeed()
         {
-            messages = new List<MessagePost>();
-            photos = new List<PhotoPost>();
-        }
-
-
-        ///<summary>
-        /// Add a text post to the news feed.
-        /// 
-        /// @param text  The text post to be added.
-        ///</summary>
-        public void AddMessagePost(MessagePost message)
-        {
-            messages.Add(message);
+            posts = new List<Post>();
         }
 
         ///<summary>
@@ -50,26 +38,73 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
-            photos.Add(photo);
+            posts.Add(photo);
         }
 
+        public void AddMessagePost(MessagePost message)
+        {
+            posts.Add(message);
+        }
+
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\n Post with ID: {id} does not exist");
+            }
+            else
+            {
+                Console.WriteLine($"\n The following post {id} has been removed");
+
+                posts.Remove(post);
+            }
+        }
+
+        public Post FindPost(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.PostID == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        public void AddACommentToAPost(int id, string comment)
+        {
+
+            Post post = FindPost(id);
+            post.AddComment(comment);
+        }
         ///<summary>
         /// Show the news feed. Currently: print the news feed details to the
         /// terminal. (To do: replace this later with display in web browser.)
         ///</summary>
+        ///
+
+        public void LikeAPost(int id)
+        {
+            Post post = FindPost(id);
+            post.Like();
+        }
+
+        public void UnlikePost(int id)
+        {
+            Post post = FindPost(id);
+            post.Unlike();
+        }
+
         public void Display()
         {
-            // display all text posts
-            foreach (MessagePost message in messages)
+            // display all posts
+            foreach (Post post in posts)
             {
-                message.Display();
-                Console.WriteLine();   // empty line between posts
-            }
-
-            // display all photos
-            foreach (PhotoPost photo in photos)
-            {
-                photo.Display();
+                post.Display();
                 Console.WriteLine();   // empty line between posts
             }
         }

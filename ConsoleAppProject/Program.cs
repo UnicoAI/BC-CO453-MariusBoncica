@@ -27,7 +27,7 @@ namespace ConsoleAppProject
         private static DistanceConverter converter = new DistanceConverter();
         private static BMICalculator calculator = new BMICalculator();
         private static StudentGrades student = new StudentGrades();
-        private static NewsFeed posts = new NewsFeed();
+        private static NetworkApp posts = new NetworkApp();
 
 
 
@@ -61,7 +61,7 @@ namespace ConsoleAppProject
             }
             else if (choice == "4")
             {
-                posts.Display();
+                posts.DisplayMenu();
             }
             else
                 Console.WriteLine("Invalid Choice");
