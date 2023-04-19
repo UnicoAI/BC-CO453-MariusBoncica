@@ -1,44 +1,58 @@
-﻿@model ConsoleAppProject.App02.BMICalculator;
-@using ConsoleAppProject.App02;
+﻿@model ConsoleAppProject.App02.BMI;
 @{
-    ViewData["Title"] = "Marius Boncica BMI Calculator";
+    ViewData["Title"] = "BmiCalculator";
 }
-<header>
-    <h1 class="tophead">
-        BMI Calculator 
-        
-    </h1>
-    <h2>by Marius Boncica</h2>
-   
-</header>
-<section >
-    <form class="inputbox" method="post">
-        <h2>Height</h2>
-        <p>
-            Please enter your current height in whole numbers using metric or imperial units
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/js/inputdecimal2.js"></script>
+<div class="jumbotron">
+    <h3 class="display-4 text-center">BMI Score Calculator
+        <p class="Backpanel">By Marius Boncica</p>
+    </h3>
+    <hr class="my-4 text-center">
+    <div class="d-flex justify-content-center">
+        <p class="cta" style="margin:5px;color:white">
+            <button class="btn btn-primary btn-lg" style="margin-top:10px;font-size:32px;min-width:150px;" onclick="javascript: $('#i').hide();javascript: $('#m').show();">Metric</button>
         </p>
-        <p>
-            <input type="number" placeholder="Feet" asp-for="@Model.Feet" />
-            <input type="number" placeholder="Inches"  asp-for="@Model.Inches" />
-            
+        <p class="cta" style="margin:5px;color:white">
+            <button class="btn btn-primary btn-lg" style="margin-top: 10px;font-size:32px;min-width:150px;" onclick="javascript: $('#m').hide();javascript: $('#i').show();">Imperial</button>
         </p>
-        <p>
-            <input type="number" placeholder="Centimeters" asp-for="@Model.Centimetres" />
-        </p>
-        <h2>Weight</h2>
-        <p>
-            Please enter your current height in whole numbers using metric or imperial units
-        </p>
-        <p>
-            <input type="number" placeholder="Stone" asp-for="@Model.Stones" value="4" />
-            <input type="number" placeholder="Pounds" asp-for="@Model.Pounds" value="2" />
-        </p>
-        <p>
-            <input type="number" placeholder="Kilograms" asp-for="@Model.Kilograms" value="60" />
+    </div>
+    <div id="i" style="display:none;">
+        <form method="post">
+            <div class="form-group">
+                <h3 class="text-centre">Height</h3>
+                <label for="Feet">Feet</label>
+                <input type="number" class="form-control" asp-for="Feet" placeholder="Feet" required />
+                <label for="Inch">Inch</label>
+                <input type="number" class="form-control floatNumberField" step="0.01" asp-for="Inches" placeholder="Inches" required />
+            </div>
+            <div class="form-group">
+                <h3 class="text-centre" style="margin-top:10px">Weight</h3>
+                <label for="Pounds">Pounds</label>
+                <input type="number" class="form-control floatNumberField" step="0.01" asp-for="Weight" placeholder="Pounds" required />
+            </div>
+            <div class="d-flex justify-content-center" style="margin-top:30px">
+                <button asp-action="BMIResultI" type="submit" class="btn btn-primary btn-lg">Calculate</button>
+            </div>
 
-        </p>
-        <p>
-            <button class="btn" type="submit">Calculate</button>
-        </p>
-    </form>
-</section>
+        </form>
+    </div>
+    <div id="m" style="display:block;">
+        <form method="post">
+            <div class="form-group">
+                <h3 class="text-centre">Height</h3>
+                <label for="Metres">Metres</label>
+                <input type="number" class="form-control floatNumberField" step="0.01" asp-for="Height" placeholder="Metres" required />
+            </div>
+            <div class="form-group">
+                <h3 class="text-centre" style="margin-top:10px">Weight</h3>
+                <label for="Kilograms">Kilograms</label>
+                <input type="number" class="form-control floatNumberField" step="0.01" asp-for="Weight" placeholder="Kilograms" required />
+            </div>
+            <div class="d-flex justify-content-center" style="margin-top:30px">
+                <button asp-action="BMIResultM" type="submit" class="btn btn-primary btn-lg">Calculate</button>
+            </div>
+        </form>
+    </div>
+</div>
+

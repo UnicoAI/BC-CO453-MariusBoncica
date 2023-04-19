@@ -1,60 +1,46 @@
-﻿@model ConsoleAppProject.App01.DistanceConverter;
-@using ConsoleAppProject.App01;
+﻿@model ConsoleAppProject.App01.DistanceConverter
+@using ConsoleAppProject.App01
+
 @{
-    ViewData["Title"] = "Marius Boncica Distance Converter";
+    ViewData["Title"] = "DistanceConverter";
 }
-<header>
-    <h1 class="tophead">
-        Distance Converter
-    </h1>
-</header>
-<form  method="post">
-    <h2 class="inputbox">Convert from</h2>
-    <p>
-        <label class="backpanel" >From Unit:</label>
-        <select asp-for="@Model.FromUnit">
-            <option>@DistanceConverter.MILES</option>
-        <option>@DistanceConverter.FEET</option>
-        <option>@DistanceConverter.METERS</option>
-   </select>
-    </p>
-    <p>
-        @if(Model.FromDistance == 0)
-        {
-            <input type="text" asp-for="@Model.FromDistance" value=""
-    placeholder="From Distance" required/>
-        }
-        else
-        {
-            <input type="text" asp-for="@Model.FromDistance" value=""
-                   placeholder="From Distance" required />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/js/inputdecimal2.js"></script>
+<div class="jumbotron">
+    <h3 class="display-4 text-center">Distance Converter
+    <p class="backpanel">By Marius Boncica</p></h3>
+    <hr class="my-4 text-center">
+    <div class="container">
+        <div class="row" style="margin:15px">
+            <div class="col-sm-6">
+                <h3 class="text-center font-weight-light" style="margin-top:10px;margin-bottom:10px">Distance</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="amount">Enter Value:</label>
+                        <input type="number" class="form-control floatNumberField" step="0.01" asp-for="Unit1Value" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="converted">Convert From:</label>
+                        <select class="form-control" asp-for="Unit1" asp-items="Html.GetEnumSelectList<DistanceUnits>()" required>
+                            <option value="">none</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toConvert">Convert To:</label>
+                        <select class="form-control" asp-for="Unit2" asp-items="Html.GetEnumSelectList<DistanceUnits>()" required>
+                            <option value="">none</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-lg" style="margin-bottom:15px">Calculate</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6" style="background-color:rgba(255,255,255,0.8); border-radius:5px;min-height:275px">
+                <h3 class="text-center font-weight-light" style="margin-top:10px;">Result</h3>
 
-        }
-    </p>
-    <h2 class="inputbox">Convert to:</h2>
-    <p>
-        <label class="backpanel">To Unit:</label>
-        <select asp-for="@Model.FromUnit">
-            <option class="btn">@DistanceConverter.MILES</option>
-            <option class="btn">@DistanceConverter.FEET</option>
-            <option class="btn">@DistanceConverter.METERS</option>
-        </select>
-    </p>
-    <p>
-        @if (Model.ToDistance == 0)
-        {
-            <input type="text" class="backpanel" asp-for="@Model.ToDistance" value=""
-                   placeholder="ToDistance" readonly />
-        }
-        else
-        {
-            <input type="text" class="backpanel" asp-for="@Model.ToDistance" value="@Model.ToDistance.ToString("0.00")"
-                   placeholder="ToDistance" readonly />
-
-        }
-    </p>
-    <p>
-        <button class="btn" type="submit">Calculate</button>
-    </p>
-</form>
-
+                <button readonly class="btn" placeholder="Enter required values to see results" style="width:100%;min-height:300px;outline:none;border:none;margin-bottom:10px;border-radius:5px;padding:15px;font-size:32px">@Model.ConverterResult(true)</button>
+            </div>
+        </div>
+    </div>
+</div>

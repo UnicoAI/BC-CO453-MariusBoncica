@@ -1,44 +1,22 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
+
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    ///App01 Bucks New 
-    ///This App will ask user to choose a distance converting unit
-    ///Convert in one unit from chosen unit
-    ///Output result</summary>
+    /// This App converts converts one distance to another with a range of values
+    /// </summary>
     /// <author>
-    /// Marius Daniel Boncica Version 2
+    /// Marius Boncica
     /// </author>
     public class DistanceConverter
     {
-        /// <summary>
-        ///App01 Bucks New 
-        /// </summary>
-        /// <author>
-        /// Marius Daniel Boncica Version 1
-        /// </author>
-        /// declare constant variables
-
-        public const int FEET_IN_MILES = 5280;
-        public const double METERS_IN_MILES = 1609.34;
-        public const double FEET_IN_METERS = 3.28084;
-
-        public const string FEET = "Feet";
-        public const string METERS = "Meters";
-        public const string MILES = "Miles";
-        //use private string for input values
-        public double FromDistance { get; set; }
-        public double ToDistance { get; set; }
-
-        public string FromUnit { get; set; }
-        public string ToUnit { get; set; }
-
-        public DistanceConverter()
-        {
-            FromUnit = MILES;
-            ToUnit = FEET;
-
-        }
+        // Create a new dictionary of strings, with string keys.
+        public Dictionary<string, string> unitConversion = new Dictionary<string, string>();
+        public Dictionary<double, double> methodReverse = new Dictionary<double, double>();
+        InputReader reader = new InputReader();
+        SyntaxGenerator syntaxGen = new SyntaxGenerator();
 
         public DistanceUnits DistanceUnits
         {
@@ -47,129 +25,172 @@ namespace ConsoleAppProject.App01
             {
             }
         }
+        // Starting value name
+        public string Unit1 { get; set; }
+        // Target value name
+        public string Unit2 { get; set; }
+        // Starting value
+        public double Unit1Value { get; set; }
+        // Used to split statements
+        public string[] Splitter { get; set; }
+        // The result
+        public double Result { get; set; }
+        // Sends conversion data
+        public string UnitData { get; set; }
+        // Used to store the middle-stage converison
+        public double ConversionValue { get; set; }
+        // Distinguishes if the program needs to divide or multiply
+        public double Method { get; set; }
+        // Program reacts different depending on the enviroment
+        public bool WebVersion { get; set; }
 
-        //convert distance method
-        public void ConvertDistance()
+        public DistanceUnits DistanceUnit
         {
-            OutputHeading();
-            FromUnit = SelectUnit(" Select the from distance unit!"); ;
-            ToUnit = SelectUnit(" Select the to distance unit!");
-
-            Console.WriteLine($"Converting {FromUnit} to {ToUnit}");
-            FromDistance = InputDistance($" Enter the number of {FromUnit}");
-            CalculateDistance();
-            OutputDistance();
-           
-        }
-        //method to input distance
-        private double InputDistance(string prompt)
-        {
-            
-            Console.WriteLine(prompt);
-            string value = Console.ReadLine();
-
-           return Convert.ToDouble(value); 
-
-        }
-        //method to convert miles to feet and feet to miles
-        public void CalculateDistance()
-        {
-            if (FromUnit == MILES && ToUnit == FEET)
+            get => default;
+            set
             {
-                ToDistance = FromDistance * FEET_IN_MILES;
-            }
-            else if (FromUnit == FEET && ToUnit == MILES)
-            {
-                ToDistance = FromDistance / FEET_IN_MILES;
-            }
-            else if (FromUnit == FEET && ToUnit == METERS)
-            {
-                ToDistance = FromDistance / FEET_IN_METERS;
-            }
-            else if (FromUnit == METERS && ToUnit == FEET)
-            {
-                ToDistance = FromDistance * FEET_IN_METERS;
-            }
-            else if (FromUnit == MILES && ToUnit == METERS)
-            {
-                ToDistance = FromDistance * METERS_IN_MILES;
-            }
-            else if (FromUnit == METERS && ToUnit == MILES)
-            {
-                ToDistance = FromDistance / METERS_IN_MILES;
-            }
-          
-            else if (FromUnit == ToUnit)
-            {
-                ToDistance = FromDistance;
             }
         }
-        //method to output a message output of distance
-        public void OutputDistance()
+
+        public void Run()
         {
-            Console.WriteLine($"{FromDistance} {FromUnit} " +
-                $" is {ToDistance} {ToUnit}");
+            syntaxGen.SubheaderGen("Distance Converter");
+            UserInput();
         }
 
-       
-
-        public string SelectUnit(string prompt)
+        public void UnitConversionData()
         {
-            string choice = DisplayChoice(prompt);
-            string unit = ExecuteChoice(choice);
-            Console.WriteLine($"You have chosen {unit}");
-            return unit;
+            unitConversion.Add("metres", "m,1");
+            unitConversion.Add("lightyears", "m,9.461E+15");
+            unitConversion.Add("kilometres", "m,1000");
+            unitConversion.Add("miles", "m,1609.344");
+            unitConversion.Add("yards", "d,1.094");
+            unitConversion.Add("feet", "d,3.281");
+            unitConversion.Add("inches", "d,39.37");
+            unitConversion.Add("centimetres", "d,100");
+            unitConversion.Add("millimetres", "d,1000");
+            unitConversion.Add("micrometres", "d,1E+6");
+            unitConversion.Add("nanometres", "d,1E+9");
+            methodReverse.Add(0, 1);
+            methodReverse.Add(1, 0);
         }
-        //method using switch to select choice
-        private static string ExecuteChoice(string choice)
+        // This is an input checker designed to check the distance values using the enum class
+        public string DistanceChecker(string consoleWrite)
         {
-            string unit = "Invalid Choice. Please enter a valid choice";
-            if (choice == "1")
+            string data = "";
+            while (true)
             {
-                return FEET;
+                Console.Write(syntaxGen.SyntaxFiller1(consoleWrite));
+                data = Console.ReadLine().ToLower();
+                if (System.Enum.IsDefined(typeof(DistanceUnits), data))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Write(syntaxGen.SyntaxFiller1("Invalid unit\n"));
+                }
+            }
+            return data;
+        }
+        /// Prompt the user to enter 2 distance units in console format and the initial value
+        public void UserInput()
+        {
+            PrintUnits();
+            Unit1 = DistanceChecker("Convert:");
+            Unit2 = DistanceChecker("To:");
+            Unit1Value = reader.DoubleInputChecker("Please enter the number of " + Unit1 + " > ");
+            double res = ConverterResult(false);
+            Console.WriteLine(syntaxGen.SyntaxFiller1(Unit1Value + " " + Unit1 + " ---> " + res + " " + Unit2));
+            syntaxGen.SyntaxFiller2();
+        }
+        // This method joins all calculations to produce a result
+        public double ConverterResult(bool version)
+        {
+            WebVersion = version;
+            UnitConversionData();
+            if (Unit1 == null || Unit2 == null)
+            {
+                Unit1 = "metres";
+                Unit2 = "metres";
+            }
+            if (Unit1.Equals(Unit2))
+            {
+                return Unit1Value;
+            }
+            else
+            {
+                return Converter(Unit2, Converter(Unit1, Unit1Value, false), true);
+            }
+        }
+        // Prints Units for the console using the enum class in a for loop scanning for all display names
+        public void PrintUnits()
+        {
+            Console.WriteLine(syntaxGen.SyntaxFiller1("Available Units:"));
+            foreach (string i in Enum.GetNames(typeof(DistanceUnits)))
+            {
+                Console.WriteLine(syntaxGen.SyntaxFiller1($" {i}"));
+            }
+        }
+        // The converter converts values to and from metres to allow mix-matching conversions, this is a 2 stage process
+        public double Converter(string unitName, double unitValue, bool reverse)
+        {
+            Result = 0;
+            int e = 0;
+            if (WebVersion)
+            {
+                if (Int32.TryParse(unitName, out e))
+                {
+                    unitName = Enum.GetName(typeof(DistanceUnits), Int32.Parse(unitName));
+                }
+                else
+                {
+                    unitName = "metres";
+                }
+            }
+
+            if (unitName != null)
+            {
+                UnitData = unitConversion[unitName];
+            }
+            else
+            {
+                UnitData = unitConversion["metres"];
+            }
+            ConversionValue = UnitConversionParser(UnitData, 1);
+            Method = UnitConversionParser(UnitData, 0);
+            if (reverse) { Method = methodReverse[Method]; }
+
+            if (Method == 0)
+            {
+                Result = unitValue * ConversionValue;
 
             }
-            else if (choice == "2")
+            else if (Method == 1)
             {
-                return METERS;
+                Result = unitValue / ConversionValue;
             }
-            else if (choice == "3")
-            {
-                return MILES;
-            }
-            
-                return unit;
-               
-
+            return Result;
         }
-        private static string DisplayChoice(string prompt)
+        //This translates the disctionary values giving the required infomation for a successful converison
+        public double UnitConversionParser(string data, int dataType)
         {
-            Console.WriteLine();
-            Console.WriteLine($" 1. {FEET}");
-            Console.WriteLine($" 2. {METERS}");
-            Console.WriteLine($" 3. {MILES}");
-            Console.WriteLine();
+            Splitter = data.Split(",");
 
-            Console.WriteLine(prompt);
-            string choice = Console.ReadLine();
-            return choice;
-
-        }
-
-
-        private void OutputHeading()
-        { /// <summary>
-          ///Create An Heading explaining the app
-
-          /// </summary>
-            Console.WriteLine("\n ----------------------------------");
-            Console.WriteLine("          Convert Miles to Feet     ");
-            Console.WriteLine("          by Marius Boncica         ");
-            Console.WriteLine("------------------------------------\n");
-
+            if (dataType == 0)
+            {
+                if (Splitter[0] == "m") { return 0; }
+                else if (Splitter[0] == "d") { return 1; }
+                else { return 3; }
+            }
+            else if (dataType == 1)
+            {
+                return Convert.ToDouble(Splitter[1]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
-    
-
-       

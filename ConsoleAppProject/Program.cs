@@ -25,7 +25,7 @@ namespace ConsoleAppProject
             }
         }
         private static DistanceConverter converter = new DistanceConverter();
-        private static BMICalculator calculator = new BMICalculator();
+        private static BMI calculator = new BMI();
         private static StudentGrades student = new StudentGrades();
         private static NetworkApp posts = new NetworkApp();
 
@@ -49,7 +49,7 @@ namespace ConsoleAppProject
             string choice = Console.ReadLine();
             if (choice == "1")
             {
-                converter.ConvertDistance();
+                converter.Run();
             }
             else if (choice == "2")
             {

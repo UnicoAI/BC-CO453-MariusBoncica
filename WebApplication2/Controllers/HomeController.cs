@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication2.Models;
 
+
 namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
@@ -27,42 +28,31 @@ namespace WebApplication2.Controllers
             return View();
         }
         public IActionResult DistanceConverter(DistanceConverter converter)
-        { if (converter.FromDistance > 0)
-            {
-                converter.CalculateDistance();
-            }
+        {
             return View(converter);
         }
         [HttpGet]
-        public IActionResult BMICalculator()
+        public IActionResult BmiCalculator(BMI model)
         {
+            return View(model);
+        }
 
+        public IActionResult BmiResultM(BMI model)
+        {
+            ViewBag.BMIResult = model.BMIcalc(false);
+            ViewBag.BMIDescription = model.BMIdescription(0);
+            ViewBag.BMIColour = model.BMIdescription(1);
             return View();
         }
-        [HttpPost]
-        public IActionResult BMICalculator(BMICalculator bmiIndex)
-        { if (bmiIndex.Centimetres > 140)
-            {
-                bmiIndex.CalculateBMI();
-                bmiIndex.OutputBMI();
-                bmiIndex.GetHealthMessage();
-            }
-            else if (bmiIndex.Feet > 4 && bmiIndex.Stones > 6)
-            {
-                bmiIndex.CalculateBMI();
-                bmiIndex.OutputBMI();
-                bmiIndex.GetHealthMessage();
-            }
-            else
-            {
-                ViewBag.Error = "You entered values too small for any adult";
 
-                return View();
-            }
-            return RedirectToAction("GetHealthMessage", new {bmiIndex});
+        public IActionResult BmiResultI(BMI model)
+        {
+            ViewBag.BMIResult = model.BMIcalc(true);
+            ViewBag.BMIDescription = model.BMIdescription(0);
+            ViewBag.BMIColour = model.BMIdescription(1);
+            return View();
         }
-
-        public IActionResult GetHealthMessage(BMICalculator bmiIndex)
+        public IActionResult GetHealthMessage(BMI bmiIndex)
         {
             return View(bmiIndex);
             
