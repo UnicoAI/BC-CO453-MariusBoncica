@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <StartupObject>App05MonoGame.Program</StartupObject>
+    <PackageIcon>Icon.bmp</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Content\Actors\BigShip1.png" />
+    <None Remove="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EditorConfigFiles Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\DesktopGL\Actors\asteroid-1.xnb" />
+    <None Include="bin\DesktopGL\Actors\asteroid-2.xnb" />
+    <None Include="bin\DesktopGL\Actors\asteroid-3.xnb" />
+    <None Include="bin\DesktopGL\Actors\BigShip1.xnb" />
+    <None Include="bin\DesktopGL\Actors\coin_copper.xnb" />
+    <None Include="bin\DesktopGL\Actors\coin_gold.xnb" />
+    <None Include="bin\DesktopGL\Actors\coin_silver.xnb" />
+    <None Include="bin\DesktopGL\Actors\GreenShip.xnb" />
+    <None Include="bin\DesktopGL\Actors\hjm-random_planetoids-1.xnb" />
+    <None Include="bin\DesktopGL\Actors\rsc-sprite-sheet1.xnb" />
+    <None Include="bin\DesktopGL\Actors\rsc-sprite-sheet2.xnb" />
+    <None Include="bin\DesktopGL\Actors\rsc-sprite-sheet3.xnb" />
+    <None Include="bin\DesktopGL\Actors\sprite-sheet1.xnb" />
+    <None Include="bin\DesktopGL\Actors\Stones2Filled_01.xnb" />
+    <None Include="bin\DesktopGL\backgrounds\game_background_4.xnb" />
+    <None Include="bin\DesktopGL\backgrounds\green_background720p.xnb" />
+    <None Include="bin\DesktopGL\backgrounds\Space6000x4000.xnb" />
+    <None Include="bin\DesktopGL\button2.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\asteroid-1.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\asteroid-2.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\asteroid-3.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\BigShip1.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\coin_copper.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\coin_gold.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\coin_silver.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\GreenShip.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\hjm-random_planetoids-1.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\rsc-sprite-sheet1.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\rsc-sprite-sheet2.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\rsc-sprite-sheet3.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\sprite-sheet1.xnb" />
+    <None Include="bin\DesktopGL\Content\Actors\Stones2Filled_01.xnb" />
+    <None Include="bin\DesktopGL\Content\backgrounds\game_background_4.xnb" />
+    <None Include="bin\DesktopGL\Content\backgrounds\green_background720p.xnb" />
+    <None Include="bin\DesktopGL\Content\backgrounds\Space6000x4000.xnb" />
+    <None Include="bin\DesktopGL\Content\button2.xnb" />
+    <None Include="bin\DesktopGL\Content\Controls\button-icon-png-200.xnb" />
+    <None Include="bin\DesktopGL\Content\Controls\button.xnb" />
+    <None Include="bin\DesktopGL\Content\Controls\button3.xnb" />
+    <None Include="bin\DesktopGL\Content\fonts\arial.xnb" />
+    <None Include="bin\DesktopGL\Content\fonts\calibri.xnb" />
+    <None Include="bin\DesktopGL\Content\Sounds\Adventures.ogg" />
+    <None Include="bin\DesktopGL\Content\Sounds\Adventures.xnb" />
+    <None Include="bin\DesktopGL\Content\Sounds\Coins.ogg" />
+    <None Include="bin\DesktopGL\Content\Sounds\Coins.xnb" />
+    <None Include="bin\DesktopGL\Content\Sounds\flame.ogg" />
+    <None Include="bin\DesktopGL\Content\Sounds\flame.xnb" />
+    <None Include="bin\DesktopGL\Controls\button-icon-png-200.xnb" />
+    <None Include="bin\DesktopGL\Controls\button.xnb" />
+    <None Include="bin\DesktopGL\Controls\button3.xnb" />
+    <None Include="bin\DesktopGL\fonts\arial.xnb" />
+    <None Include="bin\DesktopGL\fonts\calibri.xnb" />
+    <None Include="bin\DesktopGL\Sounds\Adventures.ogg" />
+    <None Include="bin\DesktopGL\Sounds\Adventures.xnb" />
+    <None Include="bin\DesktopGL\Sounds\Coins.ogg" />
+    <None Include="bin\DesktopGL\Sounds\Coins.xnb" />
+    <None Include="bin\DesktopGL\Sounds\flame.ogg" />
+    <None Include="bin\DesktopGL\Sounds\flame.xnb" />
+  </ItemGroup>
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Icon.bmp">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\net6.0\" />
+    <Folder Include="bin\Debug\net7.0\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\" />
+  </ItemGroup>
+</Project>

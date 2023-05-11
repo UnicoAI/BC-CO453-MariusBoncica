@@ -11,18 +11,20 @@ namespace ConsoleAppProject.App03
     /// </summary>
     public enum Grades
     {
-       
-        [Description("Fail")]
+        [Display(Name = "Fail")]
+        [Description("Referred")]
         F,
-        
-        [Description("Third Class")]
+        [Display(Name = "III")]
+        [Description("BSc(Hons) Third Class")]
         D,
-        [Description("Lower Second")]
+        [Display(Name = "II-2")]
+        [Description("BSc(Hons) Lower Second")]
         C,
-        [Description("Upper Second")]
+        [Display(Name = "II-1")]
+        [Description("BSc(Hons) Upper Second")]
         B,
-        
-        [Description("First Class")]
+        [Display(Name = "1st")]
+        [Description("BSc(Hons) First Class")]
         A
     }
 }

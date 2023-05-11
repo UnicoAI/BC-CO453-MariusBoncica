@@ -31,7 +31,6 @@ namespace ConsoleAppProject.App04
             comments = new List<String>();
         }
 
-
         // The method for liking a post
         public void Like()
         {

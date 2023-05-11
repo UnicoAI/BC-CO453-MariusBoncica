@@ -47,7 +47,7 @@ namespace ConsoleAppProject.Helpers
                 typeof(DisplayAttribute), false) as DisplayAttribute[];
 
             if (descriptionAttributes == null) return string.Empty;
-            return (descriptionAttributes.Length > 0) ? descriptionAttributes[0].Name : value.ToString();
+            return descriptionAttributes.Length > 0 ? descriptionAttributes[0].Name : value.ToString();
         }
 
         public static void TestEnums()

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebApps.Models.PhotoPost>
+
+@{
+    ViewData["Title"] = "MB Photo Post";
+}
+<header class="backpanel">
+    <h1>MB Post Photos</h1>
+</header>
+
+
+<p>
+    <a class="btn" asp-action="Create">Upload Photo</a>
+<a class="btn" asp-action="Index" asp-controller="MessagePosts">View Messages</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-action no-color">
+        <p>
+            Find By Name:
+            <input type="text" name="userName"/>
+            <input type="submit" value="search" class="btn" />
+            <a class="btn" asp-action="Index"> Back To Posts</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

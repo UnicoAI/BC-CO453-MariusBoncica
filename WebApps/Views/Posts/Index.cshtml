@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApps.Models.Post>
+
+
+@{
+    ViewData["Title"] = "MB Network Application";
+}
+
+<header class="backpanel">
+    <h1>MB Network Application</h1>
+</header>
+<form asp-action="Index" method="get">
+    <div class="form-action no-color">
+        <p>
+            Find By Name:
+            <input type="text" name="userName"/>
+            <input type="submit" value="search" class="btn" />
+            <a class="btn" asp-action="Index"> Back To Posts</a>
+        </p>
+    </div>
+</form>
+
+<p>
+    <a class="btn" asp-action="Create" asp-controller="MessagePosts">Upload Message Post</a>
+    <a class="btn" asp-action="Create" asp-controller="PhotoPosts">Upload Photo Post</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostID)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @item.FormatElapsedTime()
+            </td>
+                <td>@Html.DisplayFor(modelitem => item.Comments)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

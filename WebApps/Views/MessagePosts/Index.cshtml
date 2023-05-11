@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebApps.Models.MessagePost>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <form asp-action="Index" method="get">
+    <div class="form-action no-color">
+        <p>
+            Find By Name:
+            <input type="text" name="userName"/>
+            <input type="submit" value="search" class="btn" />
+        </p>
+    </div>
+</form>
+
+    <a class="btn" asp-action="Create">Upload A Message</a>
+    <a class="btn" asp-action="Create" asp-controller="PhotoPosts">Upload Photo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>@Html.DisplayFor(modelitem => item.PostID)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+                <TD>@Html.DisplayFor(modelitem => item.Message)</TD>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

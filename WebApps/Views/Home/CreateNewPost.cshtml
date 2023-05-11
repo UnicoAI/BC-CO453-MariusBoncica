@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewData["Title"] = "MB WebApps | Create New Post";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<h1>Network Application</h1>
+<div class="row">
+    <div class="col-md-4">
+        
+            <h1>Post Feed</h1>
+            <form>
+                <label for="author">Username:</label>
+                <input type="text" id="author" />
+                <br />
+                <label for="postContent">Post caption:</label>
+                <textarea id="postContent"></textarea>
+                <br />
+                <label for="postImage">Post image:</label>
+                <input type="file" class="btn" id="postImage" accept="image/*" />
+                <br />
+                <button type="button" class="btn"onclick="addPost()">Add Post</button>
+            </form>
+            <hr />
+            <div id="postList"></div>
+            <script>
+                let posts = [];
+
+                function addPost() {
+                    const author = document.getElementById('author').value;
+                    const postContent = document.getElementById('postContent').value;
+                    const postImage = document.getElementById('postImage').files[0];
+                    const id = posts.length + 1;
+                    const date = new Date();
+                    const post = {
+                        id: id,
+                        author: author,
+                        content: postContent,
+                        image: postImage,
+                        date: date,
+                        likes: 0,
+                        comments: []
+                    };
+                    posts.push(post);
+                    showPosts();
+                }
+
+                function removePost(id) {
+                    posts = posts.filter(post => post.id !== id);
+                    showPosts();
+                }
+
+                function editPost(id, newContent) {
+                    const post = posts.find(post => post.id === id);
+                    post.content = newContent;
+                    showPosts();
+                }
+
+                function addComment(id, comment) {
+                    const post = posts.find(post => post.id === id);
+                    post.comments.push(comment);
+                    showPosts();
+                }
+
+                function likePost(id) {
+                    const post = posts.find(post => post.id === id);
+                    post.likes++;
+                    showPosts();
+                }
+
+                function unlikePost(id) {
+                    const post = posts.find(post => post.id === id);
+                    post.likes--;
+                    showPosts();
+                }
+
+                function filterPostsByDate(startDate, endDate) {
+                    const filteredPosts = posts.filter(post => post.date >= startDate && post.date <= endDate);
+                    const filteredPostsElement = document.createElement('div');
+                    filteredPostsElement.innerHTML = `<h2>Posts from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}</h2>`;
+                    filteredPosts.forEach(post => {
+                        const postElement = createPostElement(post);
+                        filteredPostsElement.appendChild(postElement);
+                    });
+                    document.getElementById('postList').innerHTML = '';
+                    document.getElementById('postList').appendChild(filteredPostsElement);
+                }
+
+                function filterPostsByAuthor(author) {
+                    const filteredPosts = posts.filter(post => post.author === author);
+                    const filteredPostsElement = document.createElement('div');
+                    filteredPostsElement.innerHTML = `<h2>Posts by ${author}</h2>`;
+                    filteredPosts.forEach(post => {
+                        const postElement = createPostElement(post);
+                        filteredPostsElement.appendChild(postElement);
+                    });
+                    document.getElementById('postList').innerHTML = '';
+                    document.getElementById('postList').appendChild(filteredPostsElement);
+                }
+
+                function searchPostById(id) {
+                    const post = posts.find(post => post.id === id);
+                    if (post) {
+                        const postElement = createPostElement(post);
+                        document.getElementById('postList').innerHTML = '';
+                        document.getElementById('postList').appendChild(postElement);
+                    } else {
+                        document.getElementById('postList').innerHTML
+                        = '<p>No post found with ID ' + id + '</p>';
+                }
+            }
+            function showPosts() {
+                const postListElement = document.createElement('div');
+                postListElement.innerHTML = '<h2>All Posts</h2>';
+                posts.forEach(post => {
+                    const postElement = createPostElement(post);
+                    postListElement.appendChild(postElement);
+                });
+                document.getElementById('postList').innerHTML = '';
+                document.getElementById('postList').appendChild(postListElement);
+            }
+
+            function createPostElement(post) {
+                const postElement = document.createElement('div');
+                postElement.innerHTML = `
+                  <hr>
+                  <p>Username: ${post.author}</p>
+                  <p>Caption: ${post.content}</p>
+                  <p>Date: ${post.date.toLocaleString()}</p>
+                  <p>Likes: ${post.likes}</p>
+                `;
+                if (post.image) {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = URL.createObjectURL(post.image);
+                    postElement.appendChild(imageElement);
+                }
+                if (post.comments.length > 0) {
+                    const commentsElement = document.createElement('div');
+                    commentsElement.innerHTML = '<h3>Comments</h3>';
+                    post.comments.forEach(comment => {
+                        const commentElement = document.createElement('p');
+                        commentElement.innerText = comment;
+                        commentsElement.appendChild(commentElement);
+                    });
+                    postElement.appendChild(commentsElement);
+                }
+                const removeButton = document.createElement('button');
+                removeButton.innerText = 'Remove Post';
+                removeButton.addEventListener('click', () => removePost(post.id));
+                postElement.appendChild(removeButton);
+                const editButton = document.createElement('button');
+                editButton.innerText = 'Edit Post';
+                editButton.addEventListener('click', () => {
+                    const newContent = prompt('Enter new content for the post:');
+                    editPost(post.id, newContent);
+                });
+                postElement.appendChild(editButton);
+                const commentForm = document.createElement('form');
+                const commentInput = document.createElement('input');
+                commentInput.type = 'text';
+                commentInput.placeholder = 'Add comment...';
+                const commentButton = document.createElement('button');
+                commentButton.type = 'button';
+                commentButton.innerText = 'Comment';
+                commentButton.addEventListener('click', () => {
+                    addComment(post.id, commentInput.value);
+                    commentInput.value = '';
+                });
+                commentForm.appendChild(commentInput);
+                commentForm.appendChild(commentButton);
+                postElement.appendChild(commentForm);
+                const likeButton = document.createElement('button');
+                likeButton.innerText = 'Like';
+                likeButton.addEventListener('click', () => likePost(post.id));
+                postElement.appendChild(likeButton);
+                const unlikeButton = document.createElement('button');
+                unlikeButton.innerText = 'Unlike';
+                unlikeButton.addEventListener('click', () => unlikePost(post.id));
+                postElement.appendChild(unlikeButton);
+                postElement.innerHTML += `<p>ID: ${post.id}</p>`;
+                return postElement;
+            }
+
+            showPosts();
+        </script>
+
+      </div>
+</div>
+
+<div>
+    <a asp-action="SocialNetwork">Back to List</a>
+</div>

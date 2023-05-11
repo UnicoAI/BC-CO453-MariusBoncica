@@ -67,8 +67,6 @@ namespace ConsoleAppProject.App04
         news.AddPhotoPost(photopost);
     }
 
-
-
     private void DisplayAll()
     {
         news.Display();

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ConsoleAppProject.Helpers
 {
 
@@ -126,7 +125,7 @@ namespace ConsoleAppProject.Helpers
 
             Console.WriteLine($"\n -------------------- \n {heading} \n by Marius Boncica \n -------------------- ");
 
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine();
         }
@@ -137,7 +136,7 @@ namespace ConsoleAppProject.Helpers
         /// </summary>
         public static void OutputTitle(string title)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine($"\n {title}");
             Console.Write(" ");

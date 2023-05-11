@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebApps.Models.Student>
+
+@{
+    ViewData["Title"] = "MB WebApps | All Students";
+}
+
+<header class="text-center jumbotron justify-content-center">
+    <h1 class="display-4">Student Marks</h1>
+    <h2>Listing of All Students</h2>
+    <p>This App will allow you to enter marks for individual students, convert these marks to a grade, and show information such as statistics and charts.</p>
+</header>
+<head>
+    <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.4-web/css/all.css">
+</head>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"><i class="fa fa-user-plus"></i> New Student</a>
+    <a class="btn btn-warning" asp-action="Analyse"><i class="fa fa-binoculars"></i> Analyse Grades</a>
+ </p>
+ <p>
+     <input type="text" id="searchInput" onkeyup="search()" placeholder="Enter Student Name" title="Search for Student">
+</p>
+<table class="table" id="allStudents">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) 
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                @{
+                    if (item.Mark >=70)
+                        item.Grade = "A";
+                    else if (item.Mark >=60)
+                        item.Grade = "B";
+                    else if (item.Mark >=50)
+                        item.Grade = "C";
+                    else if (item.Mark >=40)
+                        item.Grade = "D";
+                    else
+                        item.Grade = "F";
+                 }
+                 @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.StudentId">View</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<!-- Search Script (Reference: https://www.w3schools.com/howto/howto_js_filter_table.asp-->
+<script> 
+function search() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("allStudents");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
