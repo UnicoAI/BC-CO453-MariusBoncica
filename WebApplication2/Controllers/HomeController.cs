@@ -32,12 +32,12 @@ namespace WebApplication2.Controllers
             return View(converter);
         }
         [HttpGet]
-        public IActionResult BmiCalculator(BMI model)
+        public IActionResult BmiCalculator(BMICalculatorWeb model)
         {
             return View(model);
         }
 
-        public IActionResult BmiResultM(BMI model)
+        public IActionResult BmiResultM(BMICalculatorWeb model)
         {
             ViewBag.BMIResult = model.BMIcalc(false);
             ViewBag.BMIDescription = model.BMIdescription(0);
@@ -45,14 +45,14 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public IActionResult BmiResultI(BMI model)
+        public IActionResult BmiResultI(BMICalculatorWeb model)
         {
             ViewBag.BMIResult = model.BMIcalc(true);
             ViewBag.BMIDescription = model.BMIdescription(0);
             ViewBag.BMIColour = model.BMIdescription(1);
             return View();
         }
-        public IActionResult GetHealthMessage(BMI bmiIndex)
+        public IActionResult GetHealthMessage(BMICalculatorWeb bmiIndex)
         {
             return View(bmiIndex);
             

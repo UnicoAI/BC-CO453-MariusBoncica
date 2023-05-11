@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Marius Boncica Version 2 refactored
     /// </author>
-    public class BMI
+    public class BMICalculatorWeb
     {
         SyntaxGenerator syntaxGen = new SyntaxGenerator();
         ArrayList data = new ArrayList();

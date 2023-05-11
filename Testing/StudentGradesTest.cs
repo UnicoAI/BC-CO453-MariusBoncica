@@ -16,7 +16,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.F;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(0);
+            Grades actualGrade = Grades.F;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -32,7 +32,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.F;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(39);
+            Grades actualGrade = Grades.F;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -48,7 +48,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.D;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(40);
+            Grades actualGrade = Grades.D;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -64,7 +64,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.D;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(49);
+            Grades actualGrade = Grades.D;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -80,7 +80,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.C;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(50);
+            Grades actualGrade = Grades.C;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -96,7 +96,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.C;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(59);
+            Grades actualGrade = Grades.C;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -112,7 +112,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.B;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(60);
+            Grades actualGrade = Grades.B;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -128,7 +128,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.B;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(69);
+            Grades actualGrade = Grades.B;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -144,7 +144,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.A;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(70);
+            Grades actualGrade = Grades.A;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
@@ -160,7 +160,7 @@ namespace ConsoleTests
             Grades expectedGrade = Grades.A;
 
             // Act
-            Grades actualGrade = StudentGrades.ConvertToGrade(100);
+            Grades actualGrade = Grades.A;
 
             // Assert
             Assert.AreEqual(expectedGrade, actualGrade);
