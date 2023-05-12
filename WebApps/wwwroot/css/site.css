@@ -32,13 +32,25 @@ body {
     border: 50px;
     border-radius: 20px;
     background: -webkit-linear-gradient(left, white, grey);
-    color: rgb(28, 4, 70);
+    color: #3c4045;
     cursor: pointer;
     width: 49%;
     margin-bottom: 10px;
     min-height: 50px;
     opacity: 0.8;
 }
+    .btn:hover {
+        background: -webkit-linear-gradient(left, grey, white);
+        border-radius: 16px;
+        color:white;
+        box-shadow: 0 4px 30px rgba(211, 75, 239, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 3px solid white;
+        box-shadow: white 0px 2.5px 10px !important;
+        cursor: pointer !important;
+        animation: nudge 2s linear infinite !important;
+    }
 
 .inputbox {
     border: 50px;
@@ -321,7 +333,7 @@ h1 {
 
 .gradient-color-text {
     background-size: 400% 400%;
-    background-image: linear-gradient(to right, #444351, #585167, #7e8ab9, rgb(121, 158, 207), #bb80ee, #be75c9, rgb(141, 95, 201),#262527);
+    background-image: linear-gradient(to right, #9cb7ee, #75a8ef, #99a7e0, rgb(122, 216, 235), #e880ee, #bc57e7, rgb(151, 135, 222),#4d6be4);
     -webkit-background-clip: text;
     animation: text-color-gradient 10s ease infinite;
     color: transparent;

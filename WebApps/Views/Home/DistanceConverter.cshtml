@@ -6,11 +6,48 @@
 }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/inputdecimal2.js"></script>
-<div class="jumbotron">
-    <h3 class="display-4 text-center">
-        Distance Converter
-        <p class="backpanel">By Marius Boncica</p>
-    </h3>
+
+   
+        <div class="text-center jumbotron justify-content-center">
+
+            <figure>
+                <div class="flip-card-container" style="max-width:70%;margin-left:15%">
+                    <h1>
+                       Distance Converter
+                    </h1>
+                    <div class="flip-card">
+                        <div class="flip-card-front">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                            <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                            <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
+                        </svg>
+                            <h2>
+
+
+                                <span class="gradient-color-text">
+                                    by Marius Boncica
+                                </span>
+                            </h2>
+                           
+                        </div>
+                        <div class="flip-card-back">
+
+                            <h2>
+                                <span class="gradient-color-text">
+                                    Please enter value and choose the units you prefer to calculate.
+                                </span>
+                            </h2>
+                        <img src="https://www.unicoais.com/loadmia.png" style="width:50%;border:50px;border-radius:30px">
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </figure>
+        </div>
+   
     <hr class="my-4 text-center">
     <div class="container">
         <div class="row" style="margin:15px">
@@ -41,7 +78,7 @@
             <div class="col-sm-6" style="background-color:rgba(255,255,255,0.8); border-radius:5px;min-height:275px">
                 <h3 class="text-center font-weight-light" style="margin-top:10px;">Result</h3>
 
-                <button readonly class="btn" placeholder="Enter required values to see results" style="width:100%;min-height:300px;outline:none;border:none;margin-bottom:10px;border-radius:5px;padding:15px;font-size:32px">@Model.ConverterResult(true)</button>
+                <button readonly class="read_more" placeholder="Enter required values to see results" style="width:100%;min-height:300px;outline:none;border:none;margin-bottom:10px;border-radius:5px;padding:15px;font-size:32px">@Model.ConverterResult(true)</button>
             </div>
         </div>
     </div>
