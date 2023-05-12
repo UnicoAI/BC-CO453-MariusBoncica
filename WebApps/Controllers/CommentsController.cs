@@ -50,9 +50,9 @@ namespace WebApps.Controllers
         public IActionResult Create(int id)
         {
             var posts = _context.Posts.ToList();
-            ViewBag.PostID = new SelectList(posts, "Postid", "UserName");
+            ViewBag.PostID = new SelectList(posts, "PostId", "UserName");
             Comment comment = new Comment();
-            comment.Postid = id;
+            comment.PostId = id;
             return View(comment);
         }
 
@@ -61,15 +61,17 @@ namespace WebApps.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentID,PostID,Text")] Comment comment)
+        public async Task<IActionResult> Create([Bind("CommentID,PostId,Text")] Comment comment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(comment);
-                
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Details", "PhotoPosts",
+                    new { id = comment.PostId });
             }
-            ViewData["PostID"] = new SelectList(_context.Posts, "PostID", "Discriminator", comment.Postid);
+            ViewData["PostID"] = new SelectList(_context.Posts, "PostId", "Discriminator", comment.PostId);
             return View(comment);
         }
 
@@ -86,7 +88,7 @@ namespace WebApps.Controllers
             {
                 return NotFound();
             }
-            ViewData["PostID"] = new SelectList(_context.Posts, "PostID", "Discriminator", comment.Postid);
+            ViewData["PostID"] = new SelectList(_context.Posts, "PostID", "Discriminator", comment.PostId);
             return View(comment);
         }
 
@@ -122,7 +124,7 @@ namespace WebApps.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PostID"] = new SelectList(_context.Posts, "PostID", "Discriminator", comment.Postid);
+            ViewData["PostID"] = new SelectList(_context.Posts, "PostID", "Discriminator", comment.PostId);
             return View(comment);
         }
 

@@ -9,7 +9,7 @@ namespace WebApps.Models
     public class Post
     {
 
-        public int PostID { get; set; }
+        public int PostId { get; set; }
 
         // username of the post's author
         [StringLength(20), Required]
@@ -18,7 +18,7 @@ namespace WebApps.Models
         public DateTime Timestamp { get; set; }
 
         public int Likes { get; set; }
-
+       
         public virtual ICollection<Comment> Comments { get; set; }
 
         /// <summary>

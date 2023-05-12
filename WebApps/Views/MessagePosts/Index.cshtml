@@ -24,7 +24,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PostID)
+                @Html.DisplayNameFor(model => model.PostId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Username)
@@ -44,7 +44,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-                <td>@Html.DisplayFor(modelitem => item.PostID)</td>
+                <td>@Html.DisplayFor(modelitem => item.PostId)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
@@ -56,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.Likes)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
             </td>
         </tr>
 }

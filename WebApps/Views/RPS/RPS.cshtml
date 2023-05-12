@@ -1,265 +1,276 @@
 ﻿@model RPSGame
 
 @{
-    ViewData["Title"] = "Rock Paper Scissors RPS Game";
+    ViewData["Title"] = "MB Rock Paper Scissors RPS Game";
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<div class='container'>
+<div class="backpanel">
+<div class="score">
+    <div class="player">
+        <h1 class="player__name">Your Score</h1>
+        <h2 class="user__score">0</h2>
+    </div>
    
-
-    <div class='group-buttons'>
-        <button class='btn' value='rock'>
-            <img src="https://icon-library.com/images/rock-paper-scissors-icon/rock-paper-scissors-icon-14.jpg" alt="Rock, paper, scissors icons. Rock paper scissors icons. clip " id="cpimg" width='128' height='128'>
-        </button>
-        <button class='btn' value='paper'>
-            <img src="https://icon-library.com/images/rock-paper-scissors-icon/rock-paper-scissors-icon-17.jpg" alt="Rock-paper-scissors" id="cpimg" width='128' height='128'>
-        </button>
-        <button class='btn' value='scissors'>
-            <img src="https://icon-library.com/images/rock-paper-scissors-icon/rock-paper-scissors-icon-15.jpg" alt="Rock-paper-scissors icons | Noun Project" id="cpimg" width='128' height='128'>
-        </button>
+    <div class="computer">
+        <h1>Computer's Score</h1>
+        <h2 class="computer__score">0</h2>
     </div>
-    <div class='stats'>
-        <div>
-            <p>Wins</p>
-            <p>Losses</p>
-            <p>Ties</p>
-        </div>
-        <div class='counters'>
-        </div>
-    </div>
-
-    <div class='log'>
-        <p>Welcome to MB the game!</p>
-
-        <p>Let's have some fun ;)</p>
-    </div>
-
-    <button class='resets' id="resets">Reset stats</button>
 </div>
+</div>
+    <div class="backpanel">
+<h1 class="option__head">Choose your move. Choices left - 10</h1>
+</div>
+<div class="options">
+    <button class="rock">👊</button>
+    <button class="paper">✋</button>
+    <button class="scissor">✌️</button>
+</div>
+
+<div class="moves">
+    <div class="player__move">
+        <h1 class="player__move-name">Your Choice</h1>
+        <h2 class="user__move">-</h2>
+    </div>
+
+    <div class="computer__move">
+        <h1>Computer's Choice</h1>
+        <h2 class="computer_move">-</h2>
+    </div>
+</div>
+
+<p class="result">Alert Message</p>
+
+<div class="restart__div">
+    <button class="restart">Restart</button>
+</div>
+<script>
+    let value;
+    let totalMoves = 10;
+    let playerScore = 0;
+    let computerScore = 0;
+    let result = document.querySelector('.result');
+
+
+
+    function getData() {
+        let options = ['rock', 'paper', 'scissor'];
+        options.forEach((option) => {
+            let btn = document.querySelector(`.${option}`);
+            btn.addEventListener('click', (a) => {
+                console.log(totalMoves)
+                var moves = document.querySelector('.option__head');
+                if (totalMoves > 0) {
+                    totalMoves--;
+                    moves.innerHTML = `Choose your move. Moves left - ${totalMoves}`;
+                    let random = Math.floor(Math.random() * 3);
+                    const computerMove = options[random];
+                    rps(option, computerMove);
+                }
+
+                if (totalMoves == 0) {
+                    var restart = document.querySelector('.restart');
+                    restart.style.display = 'block';
+                    if (playerScore == computerScore) {
+                        result.innerHTML = "This game is a draw";
+                    } else if (playerScore > computerScore) {
+                        result.innerHTML = value ? "Congratulations " + value + "! you won this game" : "Congratulations! you won this game";
+                    } else if (playerScore < computerScore) {
+                        result.innerHTML = value ? "Sad " + value + "! you lost this game" : "Sad! you lost this game";
+                    }
+                }
+            });
+        });
+    };
+
+    function rps(user, computer) {
+        let _userScore = document.querySelector('.user__score');
+        let _computerScore = document.querySelector('.computer__score');
+        let userMove = document.querySelector(".user__move");
+        let computerMove = document.querySelector(".computer_move");
+        let emoji = {
+            rock: '👊',
+            paper: '✋',
+            scissor: '✌️'
+        };
+        userMove.innerHTML = emoji[user];
+        computerMove.innerHTML = emoji[computer];
+        result.style.display = 'block';
+
+        if (user == computer) {
+            result.innerHTML = "It's a tie";
+        } else if (user == 'rock') {
+            if (computer == 'paper') {
+                result.innerHTML = "Computer won";
+                computerScore++;
+            } else if (computer == 'scissor') {
+                result.innerHTML = "You won";
+                playerScore++;
+            }
+        } else if (user == 'paper') {
+            if (computer == 'rock') {
+                result.innerHTML = "You won";
+                playerScore++;
+            } if (computer == 'scissor') {
+                result.innerHTML = "Computer won";
+                computerScore++;
+            }
+        } else if (user == 'scissor') {
+            if (computer == 'rock') {
+                result.innerHTML = "Computer won";
+                computerScore++;
+            } else if (computer == 'paper') {
+                result.innerHTML = "You won";
+                playerScore++;
+            }
+        }
+        _userScore.innerHTML = playerScore;
+        _computerScore.innerHTML = computerScore;
+    };
+
+    function restart() {
+        document.querySelector('.restart').addEventListener('click', () => {
+            window.location.reload();
+        });
+    };
+
+    getData();
+    restart();
+</script>
 <style>
 
 
-
-
-.group-buttons {
-  display: flex;
-  gap: 50px;
-  width:50%;
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
-.group-buttons button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  transition: 0.2s ease-in transform;}
-
-            .group-buttons button :hover
-
-    {
-    transform: scale(1.2);
-  }
-
-
-h1 {
-  text-align: center;
-  font-size: 40px;
+body {
+  
+    background-image: url('https://unicoais.com/images/R%20(1).jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Mukta', sans-serif;
 }
 
-.stats {
-  font-size: 32px;
-  display: grid;
-  gap: 100px;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-  align-items: center;
-  justify-items: center;}
+  
 
+h2 {
+    font-size: 30px;
+}
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
 
-.log {
-  text-align: center;
+.header h1 {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    /* margin: 10px; */
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.score div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0;
+}
+
+.score div h1,
+.score div h2 {
+    color: white;
+}
+
+.option__head {
+    color: white;
+    /* margin: 10px; */
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
 }
 
-.resets {
-  border: 1px solid white;
-  padding: 20px 50px;
-  border-radius: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-  color: white;
-  font-family: inherit;
-  font-size: 42px;
-
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-
+.options button {
+    margin: 50px 0px;
+    border: 3px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    padding: 0px 25px;
+    cursor: pointer;
+    font-size: 40px;
+    transition: all 0.2s ease-in-out;
 }
 
-.dance-animation {
-  animation: dance 1s;
+.options button:hover {
+    background-color: white;
 }
 
-.ease-in {
-  animation: title-anim 1s;
+.moves {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
+.moves div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
+.moves div h1,
+.moves div h2 {
+    color: white;
+}
+
+.result {
+    display: none;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+.restart__div {
+    position:fixed;
+    top:30%;
+    left:45%;
+    align-items: center;
+    justify-content: center;
+}
+
+.restart {
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.2s ease-in-out;
+    color: white;
+    font-size: 17px;
+    padding: 8px 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.restart:hover {
+    background-color: white;
+    color: black;
+}
 </style>
-<script>
-    const buttons = document.querySelectorAll(".btn");
-const log = document.querySelector(".log");
-const counters = document.querySelector(".counters");
-const resets = document.querySelector(".resets");
-const title = document.querySelector(".title");
-
-const supportsWin = [
-  "Congratulations on your win!",
-  "That's it! Keep up the good work!",
-  "Waaaaaaa :)"
-];
-const supportsLosses = ["Don't despair!", "Unthinkable!!!", "I'm so sorry! :("];
-const supportsTies = [
-  "Is there such a thing?",
-  "Why is this happening?",
-  "It's not fair"
-];
-
-const gestures = ["rock", "paper", "scissors"];
-const options = {
-  rock: {
-    rock: {
-      result: "There is a tie.",
-      supports: supportsTies
-    },
-    paper: {
-      result: "You lost.",
-      supports: supportsLosses
-    },
-    scissors: {
-      result: "You win.",
-      supports: supportsWin
-    }
-  },
-  paper: {
-    rock: {
-      result: "You win.",
-      supports: supportsWin
-    },
-    paper: {
-      result: "There is a tie.",
-      supports: supportsTies
-    },
-    scissors: {
-      result: "You lost.",
-      supports: supportsLosses
-    }
-  },
-  scissors: {
-    rock: {
-      result: "You lost.",
-      supports: supportsLosses
-    },
-    paper: {
-      result: "You win.",
-      supports: supportsWin
-    },
-    scissors: {
-      result: "There is a tie.",
-      supports: supportsTies
-    }
-  }
-};
-
-let resultGame = "Let's have some fun ;)";
-let reportGame = "Welcome to the game!";
-let localScores = localStorage.getItem("counters");
-
-const score = JSON.parse(localScores) || {
-  wins: 0,
-  losses: 0,
-  ties: 0
-};
-
-updateInfo();
-
-if (localScores) {
-  log.innerHTML = `<p>You're back!</p>
-    <p>Let's keep having fun ;)</p>`;
-} else {
-  log.innerHTML = `<p>${reportGame}</p>
-    <p>${resultGame}</p>`;
-}
-
-function updateInfo() {
-  log.innerHTML = `<p>${reportGame}</p>
-    <p>${resultGame}</p>`;
-
-  counters.innerHTML = `<p>${score.wins}</p><p>${score.losses}</p><p>${score.ties}</p>`;
-}
-
-resets.addEventListener("click", () => {
-  resultGame = "Shall we continue?";
-  reportGame = "Play Again!";
-
-  score.wins = 0;
-  score.losses = 0;
-  score.ties = 0;
-
-  localStorage.removeItem("counters");
-
-  updateInfo();
-
-  resets.classList.add("dance-animation");
-
-  if (title.textContent !== "Rock & Paper & Scissors") {
-    title.classList.add("ease-in");
-    setTimeout(() => {
-      title.innerHTML = "Rock & Paper & Scissors";
-    }, 500);
-  }
-
-  setTimeout(() => {
-    resets.classList.remove("dance-animation");
-    title.classList.remove("ease-in");
-  }, 1100);
-});
-
-buttons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const computerGesture = gestures[Math.floor(Math.random() * 3)];
-
-    const userGesture = btn.value;
-
-    reportGame = `You chose ${userGesture} and the computer chose a ${computerGesture}!`;
-
-    for (const option in options) {
-      if (userGesture === option) {
-        resultGame = options[option][computerGesture].result;
-        title.innerHTML =
-          options[option][computerGesture].supports[
-            Math.floor(Math.random() * 3)
-          ];
-      }
-    }
-
-    switch (resultGame) {
-      case "You win.":
-        score.wins++;
-        break;
-      case "You lost.":
-        score.losses++;
-        break;
-      case "There is a tie.":
-        score.ties++;
-        break;
-    }
-
-    updateInfo();
-
-    localStorage.setItem("counters", JSON.stringify(score));
-  });
-});
-
-</script>

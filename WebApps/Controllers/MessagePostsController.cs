@@ -34,7 +34,7 @@ namespace WebApps.Controllers
             }
 
             var messagePost = await _context.Messages
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (messagePost == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace WebApps.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PostID,Username,Timestamp,Likes")] MessagePost messagePost)
         {
-            if (id != messagePost.PostID)
+            if (id != messagePost.PostId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace WebApps.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MessagePostExists(messagePost.PostID))
+                    if (!MessagePostExists(messagePost.PostId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace WebApps.Controllers
             }
 
             var messagePost = await _context.Messages
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (messagePost == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace WebApps.Controllers
 
         private bool MessagePostExists(int id)
         {
-          return _context.Messages.Any(e => e.PostID == id);
+          return _context.Messages.Any(e => e.PostId == id);
         }
     }
 }

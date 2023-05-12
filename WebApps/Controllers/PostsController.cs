@@ -20,18 +20,20 @@ namespace WebApps.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index(string userName)
-        {
-           var posts = await _context.Posts
-                .OrderByDescending(a => a.Timestamp)
-                .Where (p => p.Username == "Boncica")
-                .ToListAsync();
+        public async Task<IActionResult> Index(String userName)
+        {var posts = from p in _context.Posts
+               select p;
             if (!String.IsNullOrEmpty(userName))
             {
-                posts = (List<Post>)posts
-                    .Where(u => u.Username == userName);
+                posts = posts
+                    .Where(u => u.Username == (userName)); 
             }
-            return View(posts);
+            var messages = await _context.Messages.ToListAsync();
+            var photos = await _context.Photos.ToListAsync();
+            List<Post> Posts = new List<Post>();    
+           Posts.AddRange(messages);
+            Posts.AddRange(photos);
+            return View(Posts);
         }
 
         // GET: Posts/Details/5
@@ -43,7 +45,7 @@ namespace WebApps.Controllers
             }
 
             var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (post == null)
             {
                 return NotFound();
@@ -97,7 +99,7 @@ namespace WebApps.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PostID,Username,Timestamp,Likes")] Post post)
         {
-            if (id != post.PostID)
+            if (id != post.PostId)
             {
                 return NotFound();
             }
@@ -111,7 +113,7 @@ namespace WebApps.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(post.PostID))
+                    if (!PostExists(post.PostId))
                     {
                         return NotFound();
                     }
@@ -134,7 +136,7 @@ namespace WebApps.Controllers
             }
 
             var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (post == null)
             {
                 return NotFound();
@@ -164,7 +166,7 @@ namespace WebApps.Controllers
 
         private bool PostExists(int id)
         {
-          return _context.Posts.Any(e => e.PostID == id);
+          return _context.Posts.Any(e => e.PostId == id);
         }
     }
 }

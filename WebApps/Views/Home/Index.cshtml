@@ -2,31 +2,104 @@
 @{
     ViewData["Title"] = "Marius Boncica | Home";
 }
-<header class="tophead">
-   
-        <h1 class="display-4">CO453: Application Programming</h1>
-    <h2>by Marius Boncica</h2>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-   
-</header>
+
+<div class="text-center jumbotron justify-content-center">
+
+    <figure>
+        <div class="flip-card-container" style="max-width:70%;margin-left:15%">
+            <h1>
+                CO453: Application Programming
+            </h1>
+            <div class="flip-card">
+                <div class="flip-card-front">
+                    <h1>
+
+
+                        <span class="gradient-color-text">
+                            by Marius Boncica
+                        </span>
+                    </h1>
+                    <img src="data:image/png;base64,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">
+
+                </div>
+                <div class="flip-card-back">
+                    
+                        <h2><span class="gradient-color-text">
+                    Code... Code... Code... </span></h2>
+                    <img src="https://www.unicoais.com/outsideboxgif.gif" style="width:50%">
+                  
+
+
+
+                </div>
+            </div>
+        </div>
+    </figure>
+</div>
+
 <section>
-    <div class="backpanel">
+    <div class="text-center jumbotron justify-content-center">
     <ol class="list-group">
         <li class="list-group-item">
-            <a class="btn" asp-controller="Home" asp-action="DistanceConverter">App 01</a> Distance Converter
-        </li>
+                <a class="read_more" asp-controller="Home" asp-action="DistanceConverter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                        <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                        <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
+                    </svg>
+                    <span class="gradient-color-text">
+                        Distance Converter
+
+                    </span> 
+                    
+                </a>
+            </li>
         <li class="list-group-item">
-            <a class="btn" asp-controller="Home" asp-action="BMICalculatorWeb">App 02</a> BMI Calculator
-        </li>
+                <a class="read_more" asp-controller="Home" asp-action="BMICalculatorWeb">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-file-medical-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 4.5v.634l.549-.317a.5.5 0 1 1 .5.866L9 6l.549.317a.5.5 0 1 1-.5.866L8.5 6.866V7.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L7 6l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V4.5a.5.5 0 1 1 1 0zM5.5 9h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
+                    </svg><span class="gradient-color-text">
+                      BMI Calculator
+
+                    </span>
+                   
+                </a>
+
+            </li>
         <li class="list-group-item">
-            <a class="btn" asp-controller="Students" asp-action="Index">App 03</a> Student Marks
-        </li>
+                <a class="read_more" asp-controller="Students" asp-action="Index">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                    </svg>
+                    <span class="gradient-color-text">
+                        
+                    Student Marks</span>
+                   
+                </a>
+            </li>
         <li class="list-group-item">
-            <a class="btn" asp-controller="Posts" asp-action="Index">App 04</a> Social Network
-        </li>
+                <a class="read_more" asp-controller="Posts" asp-action="Index">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                    </svg>
+                    <span class="gradient-color-text">
+                        Social Network
+                    </span>
+                   
+                </a>
+            </li>
                 <li class="list-group-item">
-            <a class="btn" asp-controller="RPS" asp-action="RPS">App 05</a> RPS Game
-        </li>
+                <a class="read_more" asp-controller="RPS" asp-action="RPS"> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16">
+                        <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1z" />
+                        <path d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729c.14.09.266.19.373.297.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466.206.875.34 1.78.364 2.606.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527-1.627 0-2.496.723-3.224 1.527-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.34 2.34 0 0 1 .433-.335.504.504 0 0 1-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a13.748 13.748 0 0 0-.748 2.295 12.351 12.351 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.354 12.354 0 0 0-.339-2.406 13.753 13.753 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27-1.036 0-2.063.091-2.913.27z" />
+
+                    </svg>
+                    <span class="gradient-color-text">
+                        RPS Game
+                    </span>
+                  
+                </a>
+            </li>
     </ol>
     </div>
 </section>

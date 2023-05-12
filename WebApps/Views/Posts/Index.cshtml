@@ -28,30 +28,65 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Username)
+                PostID
             </th>
            
             <th>
-                @Html.DisplayNameFor(model => model.Timestamp)
+               User Name
+            </th>
+
+            
+            <th>
+               Photo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Likes)
+                Message
+            </th>
+            <th>Timestamp
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Comments)
+                Likes
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            MessagePost message = null;
+           PhotoPost photo = null;
+            if(item is MessagePost)
+            {
+                message = (MessagePost)item;
+            }
+            if(item is PhotoPost)
+            {
+                photo = (PhotoPost)item;
+            }
+            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PostID)
+                    @Html.DisplayFor(modelItem => item.PostId)
                 </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
+                <!-- <td>
+                    @if (message != null)
+                    {
+                        <span>@message.Message</span>
+                    }
+                </td> -->
+                <td>
+                    @if (photo != null)
+                    {
+                        <img src="/images/@photo.Filename" width="130px" height="130px" style="border:50px;border-radius:20px;animation: nudge 2s linear infinite !important;">
+                    }
+                </td>
+                <td>
+                    @if (photo != null)
+                    {
+                        <span>@photo.Caption</span>
+                    }
+                </td>
             <td>
                 @item.FormatElapsedTime()
             </td>
@@ -60,9 +95,9 @@
                 @Html.DisplayFor(modelItem => item.Likes)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PostID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
             </td>
         </tr>
 }

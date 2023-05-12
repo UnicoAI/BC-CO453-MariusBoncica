@@ -35,7 +35,7 @@ namespace WebApps.Controllers
             }
 
             var photoPost = await _context.Photos
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (photoPost == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace WebApps.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Filename,Caption,PostID,Username,Timestamp,Likes")] PhotoPost photoPost)
         {
-            if (id != photoPost.PostID)
+            if (id != photoPost.PostId)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace WebApps.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PhotoPostExists(photoPost.PostID))
+                    if (!PhotoPostExists(photoPost.PostId))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace WebApps.Controllers
             }
 
             var photoPost = await _context.Photos
-                .FirstOrDefaultAsync(m => m.PostID == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (photoPost == null)
             {
                 return NotFound();
@@ -169,7 +169,7 @@ namespace WebApps.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PhotoPostExists(photoPost.PostID))
+                if (!PhotoPostExists(photoPost.PostId))
                 {
                     return NotFound();
                 }
@@ -195,7 +195,7 @@ namespace WebApps.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PhotoPostExists(photoPost.PostID))
+                if (!PhotoPostExists(photoPost.PostId))
                 {
                     return NotFound();
                 }
@@ -208,7 +208,7 @@ namespace WebApps.Controllers
         }
         private bool PhotoPostExists(int id)
         {
-          return _context.Photos.Any(e => e.PostID == id);
+          return _context.Photos.Any(e => e.PostId == id);
         }
     }
 }

@@ -12,10 +12,10 @@ namespace WebApps.Models
         public int CommentID { get; set; }
 
         //Foreign Key
-        public int Postid { get; set; }
+        public int PostId { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public string Text { get; set; }
+        public String Text { get; set; }
 
      
 public virtual Post Post { get; set; }

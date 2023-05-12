@@ -4,11 +4,45 @@
     ViewData["Title"] = "MB WebApps | All Students";
 }
 
-<header class="text-center jumbotron justify-content-center">
-    <h1 class="display-4">Student Marks</h1>
-    <h2>Listing of All Students</h2>
-    <p>This App will allow you to enter marks for individual students, convert these marks to a grade, and show information such as statistics and charts.</p>
-</header>
+<div class="text-center jumbotron justify-content-center">
+   
+                    <figure>
+                        <div class="flip-card-container" style="max-width:70%;margin-left:15%">
+        <h1>
+            Student Marks App
+        </h1>
+                            <div class="flip-card">
+                                <div class="flip-card-front">
+                    <h1>
+                       
+                        
+                        <span class="gradient-color-text">
+                            
+                           By Marius Boncica
+                        </span></h1>
+                <img src="data:image/png;base64,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">
+                                
+                </div>
+                                <div class="flip-card-back">
+                                    <h2>
+                    <span class="gradient-color-text">
+                        This App will allow you to 
+                        enter marks
+                   for individual students,
+                        convert
+                     these marks to a grade, and 
+                        show
+                    information such as statistics and 
+                        charts.</span></h2>
+                                       
+                                        
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+           </div>
+
 <head>
     <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.4-web/css/all.css">
 </head>
