@@ -20,9 +20,16 @@ namespace WebApps.Controllers
         }
 
         // GET: MessagePosts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String userName)
         {
-              return View(await _context.Messages.ToListAsync());
+            var posts = from p in _context.Messages select p;
+            if (!String.IsNullOrEmpty(userName))
+            {
+                posts = posts.Where(u => u.Username == userName);
+
+            }
+
+            return View(await posts.ToListAsync());
         }
 
         // GET: MessagePosts/Details/5

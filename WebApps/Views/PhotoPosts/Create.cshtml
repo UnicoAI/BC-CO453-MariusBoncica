@@ -10,13 +10,20 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <form>
+            <input type="file" class="btn" id="file-upload" multiple required />
+            <label for="file-upload">Upload file</label>
+            <div id="file-upload-filename"></div>
+        </form>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Filename" class="control-label"></label>
-                <input asp-for="Filename" class="form-control" />
+               
+                <input asp-for="Filename" type="hidden"class="form-control" id="filenameasp" value="drive.jpg" />
                 <span asp-validation-for="Filename" class="text-danger"></span>
             </div>
+         
+
             <div class="form-group">
                 <label asp-for="Caption" class="control-label"></label>
                 <input asp-for="Caption" class="form-control" />
@@ -33,8 +40,8 @@
                 <span asp-validation-for="Timestamp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Likes" class="control-label"></label>
-                <input asp-for="Likes" class="form-control" />
+                
+                <input asp-for="Likes" type="hidden" value="0" class="form-control" />
                 <span asp-validation-for="Likes" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,4 +56,23 @@
   <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
 </svg> Back to List</a>
 </div>
+<script>
+    var input = document.getElementById('file-upload');
 
+    textField = document.getElementById("filenameasp");
+
+    input.addEventListener('change', showFileName);
+
+    function showFileName(event) {
+
+        // when event is on search for input
+        var input = event.srcElement;
+
+        // create array of inputs
+        var fileName = input.files[0].name;
+
+        // pass the string to the input box
+
+        textField.value = fileName;
+    }
+</script>

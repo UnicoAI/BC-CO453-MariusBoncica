@@ -33,9 +33,13 @@
                 <input asp-for="Timestamp" class="form-control" />
                 <span asp-validation-for="Timestamp" class="text-danger"></span>
             </div>
-           
+           <div class="form-group" >
+                
+                <input asp-for="Likes" type="hidden" class="form-control" />
+                <span asp-validation-for="Likes" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit"  value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

@@ -21,9 +21,16 @@ namespace WebApps.Controllers
         }
 
         // GET: PhotoPosts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String userName)
         {
-              return View(await _context.Photos.ToListAsync());
+            var posts = from p in _context.Photos select p;
+            if (!String.IsNullOrEmpty(userName))
+            {
+                posts = posts.Where(u => u.Username == userName);
+
+            }
+
+            return View(await posts.ToListAsync());
         }
 
         // GET: PhotoPosts/Details/5
@@ -36,12 +43,20 @@ namespace WebApps.Controllers
 
             var photoPost = await _context.Photos
                 .FirstOrDefaultAsync(m => m.PostId == id);
+            Comment comment = new Comment();
+            {
+                comment.PostId = (int)id;
+            }
             if (photoPost == null)
             {
                 return NotFound();
             }
+            
+       
 
-            return View(photoPost);
+
+
+            return View(photoPost) ;
         }
 
         // GET: PhotoPosts/Create
