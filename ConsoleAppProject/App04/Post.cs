@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App04
 
         private int likes;
 
-        public List<String> comments;
+        private readonly List<String> comments;
 
         private static int instances = 0;
 

@@ -85,6 +85,7 @@
 @foreach (var item in Model) {
             MessagePost message = null;
            PhotoPost photo = null;
+           
             if(item is MessagePost)
             {
                 message = (MessagePost)item;

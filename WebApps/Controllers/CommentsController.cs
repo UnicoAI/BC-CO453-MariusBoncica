@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApps.Data;
 using WebApps.Models;
 
@@ -52,7 +53,9 @@ namespace WebApps.Controllers
             var posts = _context.Posts.ToList();
             ViewBag.PostID = new SelectList(posts, "PostId", "UserName");
             Comment comment = new Comment();
+            comment.CommentID = id;
             comment.PostId = id;
+
             return View(comment);
         }
 

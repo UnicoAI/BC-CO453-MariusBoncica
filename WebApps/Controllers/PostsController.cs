@@ -21,19 +21,15 @@ namespace WebApps.Controllers
 
         // GET: Posts
         public async Task<IActionResult> Index(String userName)
-        {var posts = from p in _context.Posts
-               select p;
-            if (!String.IsNullOrEmpty(userName))
+        {
+            var posts = from p in _context.Posts select p;
+                if (!String.IsNullOrEmpty(userName))
             {
-                posts = posts
-                    .Where(u => u.Username == (userName)); 
+                posts = posts.Where(u => u.Username == userName);
+                    
             }
-            var messages = await _context.Messages.ToListAsync();
-            var photos = await _context.Photos.ToListAsync();
-            List<Post> Posts = new List<Post>();    
-           Posts.AddRange(messages);
-            Posts.AddRange(photos);
-            return View(Posts);
+           
+            return View(await posts.ToListAsync());
         }
 
         // GET: Posts/Details/5
@@ -167,6 +163,58 @@ namespace WebApps.Controllers
         private bool PostExists(int id)
         {
           return _context.Posts.Any(e => e.PostId == id);
+        }
+        public ActionResult Like(int id)
+        {
+            var post = _context.Posts.Find(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            post.Like();
+            try
+            {
+                _context.Update(post);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(post.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+        public ActionResult Unlike(int id)
+        {
+            var post = _context.Posts.Find(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            post.Unlike();
+            try
+            {
+                _context.Update(post);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(post.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
         }
     }
 }

@@ -115,6 +115,58 @@ namespace WebApps.Controllers
             }
             return View(messagePost);
         }
+        public ActionResult Like(int id)
+        {
+            var messagepost = _context.Photos.Find(id);
+            if (messagepost == null)
+            {
+                return NotFound();
+            }
+            messagepost.Like();
+            try
+            {
+                _context.Update(messagepost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagepost.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+        public ActionResult Unlike(int id)
+        {
+            var messagepost = _context.Photos.Find(id);
+            if (messagepost == null)
+            {
+                return NotFound();
+            }
+            messagepost.Unlike();
+            try
+            {
+                _context.Update(messagepost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagepost.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
 
         // GET: MessagePosts/Delete/5
         public async Task<IActionResult> Delete(int? id)
