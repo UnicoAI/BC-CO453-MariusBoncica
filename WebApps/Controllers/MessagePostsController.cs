@@ -61,7 +61,7 @@ namespace WebApps.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostID,Username,Timestamp,Likes")] MessagePost messagePost)
+        public async Task<IActionResult> Create([Bind("PostID,Username,Messages,Timestamp,Likes")] MessagePost messagePost)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace WebApps.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostID,Username,Timestamp,Likes")] MessagePost messagePost)
+        public async Task<IActionResult> Edit(int id, [Bind("PostID,Username,Messages,Timestamp,Likes")] MessagePost messagePost)
         {
             if (id != messagePost.PostId)
             {

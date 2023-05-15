@@ -15,7 +15,7 @@ namespace WebApps.Models
     public class MessagePost : Post
     {
         // an arbitrarily long, multi-line message
-        [StringLength(256), DataType(DataType.MultilineText)]
+        [StringLength(30)]
         public String Message { get; set; }
 
     }

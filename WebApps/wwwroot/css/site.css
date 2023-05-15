@@ -510,3 +510,33 @@ flip card
         color: white;
         opacity: 0.9;
     }
+.center {
+    text-align: center;
+}
+
+.css_button {
+    position: relative;
+   
+    margin: 10px;
+    margin-top: 9px;
+    padding: 10px 30px;
+    z-index: 1;
+    height:200px;
+    background: transparent;
+    border: none;
+    color: #2d2d2d;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 1px 0 hsl(174, 5%, 80%), 0 2px 0 hsl(174, 5%, 75%), 0 3px 0 hsl(174, 5%, 70%), 0 4px 0 hsl(174, 5%, 66%), 0 5px 0 hsl(174, 5%, 64%), 0 6px 0 hsl(174, 5%, 62%), 0 7px 0 hsl(174, 5%, 61%), 0 8px 0 hsl(174, 5%, 60%), 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.3);
+}
+
+    .css_button:hover {
+        color: #2d2d2d;
+        box-shadow: 0 1px 0 hsl(174, 5%, 80%), 0 2px 0 hsl(174, 5%, 75%), 0 3px 0 hsl(174, 5%, 70%), 0 0 5px rgba(255, 255, 255, 0.05), 0 1px 3px rgba(255, 255, 255, 0.2), 0 3px 5px rgba(255, 255, 255, 0.2);
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+    body{
+        max-width:100%;
+        overflow-x: hidden;
+    }
