@@ -1,0 +1,133 @@
+﻿
+
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+body {
+    background-image: url('https://unicoais.com/images/R%20(1).jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Mukta', sans-serif;
+}
+
+
+
+h2 {
+    font-size: 30px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+    .header h1 {
+        text-align: center;
+        color: white;
+        font-weight: 700;
+        /* margin: 10px; */
+        cursor: pointer;
+        font-size: 40px;
+    }
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    .score div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 50px 0;
+    }
+
+        .score div h1,
+        .score div h2 {
+            color: white;
+        }
+
+.option__head {
+    color: white;
+    /* margin: 10px; */
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    .options button {
+        margin: 50px 0px;
+        border: 3px solid white;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 10px;
+        padding: 0px 25px;
+        cursor: pointer;
+        font-size: 80px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .options button:hover {
+            background-color: white;
+        }
+
+.moves {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+    .moves div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        .moves div h1,
+        .moves div h2 {
+            color: white;
+        }
+
+.result {
+    display: none;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+.restart__div {
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    align-items: center;
+    justify-content: center;
+}
+
+.restart {
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.2s ease-in-out;
+    color: white;
+    font-size: 17px;
+    padding: 8px 20px;
+    cursor: pointer;
+    display: none;
+}
+
+    .restart:hover {
+        background-color: white;
+        color: black;
+    }

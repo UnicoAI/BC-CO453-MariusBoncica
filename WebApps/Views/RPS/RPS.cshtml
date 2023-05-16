@@ -1,276 +1,94 @@
-﻿@model RPSGame
+﻿@model WebApps.Models.RPSGame
 
 @{
-    ViewData["Title"] = "MB Rock Paper Scissors RPS Game";
+    ViewData["Title"] = "MB RPS Game";
 }
 
-<h1>@ViewData["Title"]</h1>
+
+
+
+<head>
+    <link rel="stylesheet" href="~/css/RPSGame.css" />
+</head>
+<h2 class="css_button" style="color:white;position:fixed;left:5%;top:12%;max-width:15%;z-index:2;">@ViewData["Title"]</h2>
+
 <div class="backpanel">
 <div class="score">
+
+
+        @if (string.IsNullOrEmpty(ViewData["UserChoice"] as string))
+        {
+           
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" name="username" value="Enter Your Name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Start Game" class="css_button" />
+                </div>
+            </form>
+        }
+        else
+        {
+            <p class="player__name"></p>
+            
+          
+            @if (ViewData["counts"] != null && int.TryParse(ViewData["counts"].ToString(), out int count) && count > 0)
+
+            {
+                <p>Remaining Plays: @ViewData["counts"]</p>
+            }
+            else
+            {
+               
+                    <input class="css_button" style="color:white;font-size:32px" asp-action="RPS" type="submit" value="Game Over">
+                 
+                
+            }
+        }
+
+    @if (!string.IsNullOrEmpty(ViewData["UserScore"] as string) && !string.IsNullOrEmpty(ViewData["ComputerScore"] as string))
+        {
+            
     <div class="player">
-        <h2 class="player__name">Your Score</h2>
-        <h2 class="user__score">0</h2>
+                <h2 class="player__name">@ViewData["Username"]</h2>
+            <h2 class="css_button">@ViewData["UserScore"]</h2>
     </div>
    
     <div class="computer">
         <h2>Computer's Score</h2>
-        <h2 class="computer__score">0</h2>
+            <h2 class="css_button">@ViewData["ComputerScore"]</h2>
     </div>
+}
 </div>
 </div>
+
+<h1 class="css_button" style="color:white">@ViewData["Result"]</h1>
+<form method="post">
     <div class="backpanel">
-<h3 class="option__head">Choose your move. Choices left - 10</h3>
+
+        <div class="moves">
+            @if (!string.IsNullOrEmpty(ViewData["UserChoice"] as string))
+            {
+                <div class="player__move">
+                    <h2 class="player__move-name">@ViewData["UserChoice"]</h2>
+                    <h2 class="css_button">@ViewData["UserChoice"]</h2>
+                </div>
+
+                <div class="computer__move">
+                    <h2>Computer's Choice</h2>
+                    <h2 class="css_button">@ViewData["ComputerChoice"]</h2>
+                </div>
+            }
+        </div>
+
+       
 </div>
 <div class="options">
-    <button class="rock">👊</button>
-    <button class="paper">✋</button>
-    <button class="scissor">✌️</button>
+    <button class="css_button" id="rock" name="userChoice" value="ROCK"><img src="~/images/rock.png" width="200px" height="150px"></button>
+        <button class="css_button" id="paper" name="userChoice" value="PAPER"><img src="~/images/paper.png" width="200px" height="150px"></button>
+        <button class="css_button" id="scissor" name="userChoice" value="SCISSOR"><img src="~/images/scissors.png" width="200px" height="150px"></button>
 </div>
+  <input class="css_button" style="color:white;position:fixed;top:43%;left:47%"type="submit" value="Restart">
+</form>
 
-<div class="moves">
-    <div class="player__move">
-        <h2 class="player__move-name">Your Choice</h2>
-        <h2 class="user__move">-</h2>
-    </div>
-
-    <div class="computer__move">
-        <h2>Computer's Choice</h2>
-        <h2 class="computer_move">-</h2>
-    </div>
-</div>
-
-<p class="result">Alert Message</p>
-
-<div class="restart__div">
-    <button class="restart">Restart</button>
-</div>
-<script>
-    let value;
-    let totalMoves = 10;
-    let playerScore = 0;
-    let computerScore = 0;
-    let result = document.querySelector('.result');
-
-
-
-    function getData() {
-        let options = ['rock', 'paper', 'scissor'];
-        options.forEach((option) => {
-            let btn = document.querySelector(`.${option}`);
-            btn.addEventListener('click', (a) => {
-                console.log(totalMoves)
-                var moves = document.querySelector('.option__head');
-                if (totalMoves > 0) {
-                    totalMoves--;
-                    moves.innerHTML = `Choose your move. Moves left - ${totalMoves}`;
-                    let random = Math.floor(Math.random() * 3);
-                    const computerMove = options[random];
-                    rps(option, computerMove);
-                }
-
-                if (totalMoves == 0) {
-                    var restart = document.querySelector('.restart');
-                    restart.style.display = 'block';
-                    if (playerScore == computerScore) {
-                        result.innerHTML = "This game is a draw";
-                    } else if (playerScore > computerScore) {
-                        result.innerHTML = value ? "Congratulations " + value + "! you won this game" : "Congratulations! you won this game";
-                    } else if (playerScore < computerScore) {
-                        result.innerHTML = value ? "Sad " + value + "! you lost this game" : "Sad! you lost this game";
-                    }
-                }
-            });
-        });
-    };
-
-    function rps(user, computer) {
-        let _userScore = document.querySelector('.user__score');
-        let _computerScore = document.querySelector('.computer__score');
-        let userMove = document.querySelector(".user__move");
-        let computerMove = document.querySelector(".computer_move");
-        let emoji = {
-            rock: '👊',
-            paper: '✋',
-            scissor: '✌️'
-        };
-        userMove.innerHTML = emoji[user];
-        computerMove.innerHTML = emoji[computer];
-        result.style.display = 'block';
-
-        if (user == computer) {
-            result.innerHTML = "It's a tie";
-        } else if (user == 'rock') {
-            if (computer == 'paper') {
-                result.innerHTML = "Computer won";
-                computerScore++;
-            } else if (computer == 'scissor') {
-                result.innerHTML = "You won";
-                playerScore++;
-            }
-        } else if (user == 'paper') {
-            if (computer == 'rock') {
-                result.innerHTML = "You won";
-                playerScore++;
-            } if (computer == 'scissor') {
-                result.innerHTML = "Computer won";
-                computerScore++;
-            }
-        } else if (user == 'scissor') {
-            if (computer == 'rock') {
-                result.innerHTML = "Computer won";
-                computerScore++;
-            } else if (computer == 'paper') {
-                result.innerHTML = "You won";
-                playerScore++;
-            }
-        }
-        _userScore.innerHTML = playerScore;
-        _computerScore.innerHTML = computerScore;
-    };
-
-    function restart() {
-        document.querySelector('.restart').addEventListener('click', () => {
-            window.location.reload();
-        });
-    };
-
-    getData();
-    restart();
-</script>
-<style>
-
-
-* {
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
-
-body {
-  
-    background-image: url('https://unicoais.com/images/R%20(1).jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'Mukta', sans-serif;
-}
-
-  
-
-h2 {
-    font-size: 30px;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px;
-}
-
-.header h1 {
-    text-align: center;
-    color: white;
-    font-weight: 700;
-    /* margin: 10px; */
-    cursor: pointer;
-    font-size: 40px;
-}
-
-.score {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.score div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 50px 0;
-}
-
-.score div h1,
-.score div h2 {
-    color: white;
-}
-
-.option__head {
-    color: white;
-    /* margin: 10px; */
-    text-align: center;
-}
-
-.options {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-}
-
-.options button {
-    margin: 50px 0px;
-    border: 3px solid white;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 10px;
-    padding: 0px 25px;
-    cursor: pointer;
-    font-size: 40px;
-    transition: all 0.2s ease-in-out;
-}
-
-.options button:hover {
-    background-color: white;
-}
-
-.moves {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.moves div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.moves div h1,
-.moves div h2 {
-    color: white;
-}
-
-.result {
-    display: none;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    margin: 25px 0;
-}
-
-.restart__div {
-    position:fixed;
-    top:30%;
-    left:45%;
-    align-items: center;
-    justify-content: center;
-}
-
-.restart {
-    border: 3px solid white;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0);
-    transition: all 0.2s ease-in-out;
-    color: white;
-    font-size: 17px;
-    padding: 8px 20px;
-    cursor: pointer;
-    display: none;
-}
-
-.restart:hover {
-    background-color: white;
-    color: black;
-}
-</style>

@@ -17,7 +17,10 @@ namespace WebApps.Controllers
         {
             return View();
         }
-
+        public IActionResult RPSCHARP()
+        {
+            return View();
+        }
         public IActionResult DistanceConverter(DistanceConverter converter)
         {
             return View(converter);

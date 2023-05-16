@@ -4,6 +4,38 @@
     ViewData["Title"] = "Details";
 }
 
+<header class="main-header u-flex">
+    <div class="start u-flex">
+        <a class="logo">m</a>
+        <div class="search-box-wrapper">
+            <form asp-action="Index" method="get">
+                <div class="form-action no-color">
+
+                    <input type="text" class="search-box" name="userName" placeholder=".....Search Posts" />
+                    <input type="submit" class="icon-search" style="width:40px" value="🔎">
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul class="main-nav-list u-flex">
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="Posts" aria-label="Homepage" class="main-nav-button alt-text is-selected"><span class="icon" aria-hidden="true">🏠</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="MessagePosts" aria-label="MessagePosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">🏁</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="PhotoPosts" aria-label=" PhotoPosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">📺</span></a></li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="MessagePosts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Message Post"><span class="icon" aria-hidden="true">💬</span></a>
+            </li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="Photoposts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Photo Post"><span class="icon" aria-hidden="true">➕</span></a>
+            </li>
+
+
+        </ul>
+    </nav>
+    <div class="end"></div>
+</header>
 <h1>Details</h1>
 
 <div>

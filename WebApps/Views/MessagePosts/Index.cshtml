@@ -39,86 +39,155 @@
         </div>
     </figure>
 </div>
-<a class="btn" asp-controller="Posts" asp-action="Index" style="width:100px">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
-    </svg> Home
-</a>
-<form  asp-action="Index" method="get">
-    <div class="form-action no-color">
-        <p>
-            Find By Name:
-            <input type="text" name="userName" />
-            <input type="submit" value="search" class="btn" style="width:100px" />
 
-        </p>
+
+<header class="main-header u-flex">
+    <div class="start u-flex">
+        <a class="logo">m</a>
+        <div class="search-box-wrapper">
+            <form asp-action="Index" method="get">
+                <div class="form-action no-color">
+
+                    <input type="text" class="search-box" name="userName" placeholder=".....Search Posts" />
+                    <input type="submit" class="icon-search" style="width:40px" value="🔎">
+
+                </div>
+            </form>
+
+        </div>
     </div>
-</form>
+    <nav class="main-nav">
+        <ul class="main-nav-list u-flex">
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="Posts" aria-label="Homepage" class="main-nav-button alt-text is-selected"><span class="icon" aria-hidden="true">🏠</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="MessagePosts" aria-label="MessagePosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">🏁</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="PhotoPosts" aria-label=" PhotoPosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">📺</span></a></li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="MessagePosts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Message Post"><span class="icon" aria-hidden="true">💬</span></a>
+            </li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="Photoposts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Photo Post"><span class="icon" aria-hidden="true">➕</span></a>
+            </li>
 
 
-<p>
-    <a class="btn" asp-action="Create">Upload Message</a>
-    <a class="btn" asp-action="Create" asp-controller="PhotoPosts"> Upload Photo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PostId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Timestamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Likes)
-            </th>
+        </ul>
+    </nav>
+    <div class="end"></div>
+</header>
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-                <td>@Html.DisplayFor(modelitem => item.PostId)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-                <TD>
-                    @Html.DisplayFor(modelitem => item.Message)
-                    Lovely!!!!!!
-                    
-                    </TD>
-            <td>
-                @Html.DisplayFor(modelItem => item.Timestamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Likes)
-            </td>
-            <td>
-                    <a class="btn btn-success" style="width:50px" asp-action="Edit" asp-route-id="@item.PostId">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+
+
+<nav class="user-nav">
+    <ul class="user-nav-list u-flex">
+        <li class="user-nav-item">
+            <a class="user">
+                <img class="user-image" src="~/images/drive.jpg" height="28" width="28" alt="">
+                <span class="user-name">Marius Boncica</span>
+            </a>
+        </li>
+        <li class="user-nav-item">
+            <a asp-controller="Photoposts" asp-action="Create" class="icon-button alt-text" aria-label="Create Photo Post"><span class="icon" aria-hidden="true">➕</span></a>
+        </li>
+        <li class="user-nav-item">
+            <a asp-controller="Messageposts" asp-action="Create" class="icon-button alt-text" aria-label="Create Message Post"><span class="icon" aria-hidden="true">💬</span></a>
+        </li>
+
+    </ul>
+</nav>
+
+<main class="main-feed">
+    @foreach (var item in Model)
+    {
+        Comment comments = new Comment();
+
+
+        <ul class="main-feed-list">
+            <li class="main-feed-item">
+                <article class="common-post">
+                    <header class="common-post-header u-flex">
+
+                        <img src="~/images/running.jpg" class="user-image" width="40" height="40" alt="">
+
+                        <div class="common-post-info">
+                            <div class="user-and-group u-flex">
+
+                                <a href="https://www.facebook.com/unicolondon" aria-label="Follow me on Facebook" target="_blank">
+                                    Post ID: @Html.DisplayFor(modelItem => item.PostId) |
+
+                                    User Name: @Html.DisplayFor(modelItem => item.Username)
+
+                                </a>
+                            </div>
+
+                            <div class="time-and-privacy" style="font-size:14px;"><time datetime="">@item.FormatElapsedTime() </time><span class="icon icon-privacy">🌎</span></div>
+                        </div>
+                        <a class="icon-button-2 u-margin-inline-start" asp-action="Details" asp-route-id="@item.PostId" aria-label="Details"><span class="icon-menu"></span></a>
+                    </header>
+                    <div class="common-post-content common-content">
+                        <p>
+                          
+                                <b>
+                                    <a asp-controller="MessagePosts" asp-action="Details" aria-label="Click to view" asp-route-id="@item.PostId">
+                                    @Html.DisplayFor(modelitem => item.Message)
+                                    Lovely!!!!!!
+                                        <p>
+                                            <img src="https://th.bing.com/th/id/OIP.0WIqncqOmlUerEAD3ZFjUAHaFa?w=230&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width:80%; height:450px;margin-left:10%; border:50px;border-radius:20px;animation: nudge 2s linear infinite !important;">
+                                    </a>
+                                </b>
+
+                                <br> <br>
+                            
+                          
+                            
+                    </div>
+                    <div class="summary u-flex">
+                        <div class="reactions">❤️</div>
+                        <div class="reactions-total">@Html.DisplayFor(modelItem => item.Likes)</div>
+                        <div class="total-comments u-margin-inline-start">
+                            @if (comments != null)
+                            {
+                                <a asp-controller="Comments" asp-action="Index" asp-route-id="@item.PostId">
+                                    @Html.DisplayFor(ModelItem => item.Comments)
+                                    <span>@comments.Text</span>
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                    <section class="actions-buttons">
+                        <ul class="actions-buttons-list u-flex">
+                            <li class="actions-buttons-item"><a class="actions-buttons-button" asp-controller="Posts" asp-action="Like" asp-route-id="@item.PostId" aria-label="Click for Like"><span class="icon">👍</span><span class="text">Like</span></a></li>
+                            <li class="actions-buttons-item"><a class="actions-buttons-button" asp-controller="Posts" asp-action="Unlike" asp-route-id="@item.PostId" aria-label="Click to Unlike"><span class="icon">👎</span><span class="text">Unlike</span></a></li>
+                            <li class="actions-buttons-item"><a class="actions-buttons-button" asp-controller="Comments" asp-action="Index" asp-route-id="@item.PostId" aria-label="Click to view commenmts"><span class="icon">💬</span><span class="text">View Comments</span></a></li>
+                            <li class="actions-buttons-item"><a class="actions-buttons-button" asp-controller="Comments" asp-action="Create" asp-route-id="@item.PostId"><span class="icon" aria-label="Click to add comment">💬</span><span class="text">Add Comment</span></a></li>
+
+                        </ul>
+                    </section>
+                    <section class="actions-buttons">
+                        <ul class="actions-buttons-list u-flex">
+                            <li class="actions-buttons-item">
+                                <a class="actions-buttons-button"  asp-action="Edit" asp-route-id="@item.PostId">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                        </svg>
+                        </svg>Edit      |
                     </a>
-                    <a class="btn btn-info" style="width:50px" asp-action="Details" asp-route-id="@item.PostId">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+
+                                <a class="actions-buttons-button" asp-action="Details" asp-route-id="@item.PostId">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
                             <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z" />
-                        </svg>
+                        </svg>Details       |
                     </a>
-                    <a class="btn btn-danger" style="width:50px" asp-action="Delete" asp-route-id="@item.PostId">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+
+                                <a class="actions-buttons-button"  asp-action="Delete" asp-route-id="@item.PostId">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                        </svg>
-                    </a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        </svg>Delete
+                    </a></li>
+                        </ul>
+                    </section>
+                </article>
+            </li>
+        </ul>
+    }
+</main>
+

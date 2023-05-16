@@ -13,7 +13,7 @@ namespace WebApps.Models
         public int ComputerWins { get; private set; }
         public int Ties { get; private set; }
         public bool GameOver { get; private set; }
-       
+       public string userName { get; set; }
         public RPSGame()
         {
             GameOver = false;
@@ -21,9 +21,11 @@ namespace WebApps.Models
             ComputerWins = 0;
             Ties = 0;
         }
-
+        
         public void Play(string userChoice)
         {
+           
+            Console.ReadLine();
             string[] choices = new string[3] { "rock", "paper", "scissors" };
             Random rnd = new Random();
             int computerIndex = rnd.Next(0, 3);

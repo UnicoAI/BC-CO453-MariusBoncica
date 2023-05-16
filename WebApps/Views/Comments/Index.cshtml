@@ -4,40 +4,97 @@
     ViewData["Title"] = "Comments";
 }
 
+<header class="main-header u-flex">
+    <div class="start u-flex">
+        <a class="logo">m</a>
+        <div class="search-box-wrapper">
+            <form asp-action="Index" method="get">
+                <div class="form-action no-color">
+
+                    <input type="text" class="search-box" name="userName" placeholder=".....Search Posts" />
+                    <input type="submit" class="icon-search" style="width:40px" value="🔎">
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul class="main-nav-list u-flex">
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="Posts" aria-label="Homepage" class="main-nav-button alt-text is-selected"><span class="icon" aria-hidden="true">🏠</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="MessagePosts" aria-label="MessagePosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">🏁</span></a></li>
+            <li class="main-nav-item u-only-wide"><a asp-action="Index" asp-controller="PhotoPosts" aria-label=" PhotoPosts" class="main-nav-button alt-text"><span class="icon" aria-hidden="true">📺</span></a></li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="MessagePosts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Message Post"><span class="icon" aria-hidden="true">💬</span></a>
+            </li>
+            <li class="main-nav-item u-only-wide">
+                <a asp-controller="Photoposts" asp-action="Create" class="main-nav-button alt-text is-selected" aria-label="Create Photo Post"><span class="icon" aria-hidden="true">➕</span></a>
+            </li>
 
 
-<a class="btn" onclick="history.back()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
-    </svg>Back to Post
-</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Post.Comments)
-            </th>
-           
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-               
-           
-           
-        </tr>
-}
-    </tbody>
-</table>
+        </ul>
+    </nav>
+    <div class="end"></div>
+</header>
 
-<a class="btn" onclick="history.back()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
-    </svg>Back to Post 
-</a>
+<main class="main-feed">
+   
+        <ul class="main-feed-list">
+            <li class="main-feed-item">
+                <article class="common-post">
+                    <header class="common-post-header u-flex">
+
+                        <img src="~/images/running.jpg" class="user-image" width="40" height="40" alt="">
+
+                        <div class="common-post-info">
+                            <div class="user-and-group u-flex">
+
+                               
+                            </div>
+
+                            <div class="time-and-privacy" style="font-size:14px;">Comments List<span class="icon icon-privacy">🌎</span></div>
+                        </div>
+                    <a class="icon-button-2 u-margin-inline-start" onclick="history.back()" aria-label="Details"><span class="icon-menu"></span></a>
+                    </header>
+                    <div class="common-post-content common-content">
+                        
+                                   @foreach (var item in Model) {
+
+                        <p>
+
+                            <b>
+                    @Html.DisplayFor(modelItem => item.Text)
+              
+                                </b>
+                                </p>
+
+                                <br> <br>
+                            
+                                   }
+                                
+
+                                <br>
+
+                         </div>
+                         
+                   
+                    <section class="actions-buttons">
+                        <ul class="actions-buttons-list u-flex">
+        
+                                <li class="actions-buttons-item">
+                                    <a class="actions-buttons-button" onclick="history.back()" aria-label="Go Back To Post">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+                                            </svg>
+                            Go Back</span></a></li>
+                          
+                         
+                        </ul>
+                    </section>
+                </article>
+            </li>
+        </ul>
+    
+</main>
+
