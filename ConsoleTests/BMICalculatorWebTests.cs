@@ -1,94 +1,303 @@
-﻿using ConsoleAppProject.App02;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ConsoleAppProject.App02;
 
-namespace ConsoleAppProject.Tests
+namespace ConsoleApp.Test
 {
     [TestClass]
     public class BMICalculatorWebTests
     {
         [TestMethod]
-        public void Test_BMIcalc_Imperial()
+        public void TestMetricBMIcalc()
         {
-            // Arrange
-            BMICalculatorWeb bmiCalculator = new()
-            {
-                Feet = 5,
-                Inches = 10,
-                Weight = 160
-            };
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 70.4;
 
-            // Act
-            ;
-            double result = Convert.ToInt32(bmiCalculator.BMIcalc(false));
-            double expectedDistance = 22.9;
-            // Assert
-            Assert.AreEqual(expectedDistance, result);
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "19.9";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+
+        public void TestImperialBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 187;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "24";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
         }
 
         [TestMethod]
-        public void Test_BMIcalc_Metric()
+        public void TestBMIdescription()
         {
-            // Arrange
-            BMICalculatorWeb bmiCalculator = new()  
-            {
-                Height = 1.75,
-                Weight = 70
-            };
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.BMIdata();
+            bmiCalculator.Bmi = 18.7;
 
+            string actualDescription = bmiCalculator.BMIdescription(0);
+            string expectedDescription = "Normal";
 
-            // Act
-            ;
-            double result = Convert.ToInt32(bmiCalculator.BMIcalc(false));
-            double expectedDistance = 22.86;
-            // Assert
-            Assert.AreEqual(expectedDistance, result);
+            Assert.AreEqual(expectedDescription, actualDescription);
         }
 
         [TestMethod]
-        public void Test_BMIdescription_Underweight()
+        public void TestBMIColor()
         {
-            // Arrange
-            BMICalculatorWeb bmiCalculator = new() { Bmi = 18 };
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.BMIdata();
+            bmiCalculator.Bmi = 18.7;
 
-            // Act
-            string description = bmiCalculator.BMIdescription(0);
+            string actualColor = bmiCalculator.BMIdescription(1);
+            string expectedColor = "#2fb52f";
 
-            // Assert
-            Assert.AreEqual("Underweight", description);
+            Assert.AreEqual(expectedColor, actualColor);
+        }
+        [TestMethod]
+        public void TestUnderweightMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 63.6;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "18";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestNormalMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 70.4;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "19.9";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
         }
 
         [TestMethod]
-        public void Test_BMIdescription_Normal()
+        public void TestHighMetric()
         {
-            // Arrange
-            BMICalculatorWeb bmiCalculator = new()
-            {
-                Bmi = 24.9
-            };
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 95.3;
 
-            // Act
-            string description = bmiCalculator.BMIdescription(0);
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "27";
 
-            // Assert
-            Assert.AreEqual("Normal", description);
+            Assert.AreEqual(expectedBMI, actualBMI);
         }
+        public void TestImperialUnderWeightLowBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 70.4;
 
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "17.46";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        public void TestImperialUnderWeightHighBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 95.3;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "26.96";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
         [TestMethod]
-        public void Test_BMIdescription_Overweight()
+        public void TestObeseIMetric()
         {
-            // Arrange
-            BMICalculatorWeb bmiCalculator = new()
-            {
-                Bmi = 30
-            };
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 97.8;
 
-            // Act
-            string description = bmiCalculator.BMIdescription(0);
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "27.7";
 
-            // Assert
-            Assert.AreEqual("Overweight", description);
+            Assert.AreEqual(expectedBMI, actualBMI);
         }
+        [TestMethod]
+        public void TestObeseIIMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 115.9;
 
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "32.8";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestImperiaNormaLowBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 95.3;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "12.2";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestImperiaObeseIHighBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 115.9;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "14.9";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestImperialObeseWeightLowBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 97.8;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "12.6";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        
+        public void TestImperiaObeseIILowLowBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 141.2;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "18.1";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+
+        public void TestImperiaObeseIIHighBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 160.9;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "20.7";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestObeseIIIMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 115;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "32.5";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+
+        public void TestImperiaObeseIIILowLowBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 163.6;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "21";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestObeseILowMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 118.5;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "33.5";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestObeseIHighMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 160.9;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "45.5";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestObeseIIILowMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 163.6;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "46.3";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+        public void TestObeseIIIHighMetric()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Height = 1.88;
+            bmiCalculator.Weight = 175.5;
+
+            string actualBMI = bmiCalculator.BMIcalc(false);
+            string expectedBMI = "49.7";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+        [TestMethod]
+
+        public void TestImperiaObeseIIIHighBMIcalc()
+        {
+            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
+            bmiCalculator.Feet = 6;
+            bmiCalculator.Inches = 2;
+            bmiCalculator.Weight = 175.5;
+
+            string actualBMI = bmiCalculator.BMIcalc(true);
+            string expectedBMI = "22.5";
+
+            Assert.AreEqual(expectedBMI, actualBMI);
+        }
+      
     }
-    }
+}

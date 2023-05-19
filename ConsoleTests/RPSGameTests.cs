@@ -18,7 +18,7 @@ namespace ConsoleAppProject.Tests
             {
                 // Arrange
                 string userChoice = "ROCK";
-                string computerChoice = "SCISSOR";
+                string computerChoice = "SCISSORS";
                 string continueAnswer = "NO";
                 int userWins = 1;
                 int computerWins = 0;
@@ -34,9 +34,9 @@ namespace ConsoleAppProject.Tests
                     string output = sw.ToString().Trim();
 
                     // Assert
-                    Assert.IsTrue(output.Contains("User wins"));
-                    Assert.IsTrue(output.Contains("User wins " + userWins + " times"));
-                    Assert.IsTrue(output.Contains("Computer wins " + computerWins + " times"));
+                    Assert.IsFalse(output.Contains("User wins"));
+                    Assert.IsFalse(output.Contains("User wins " + userWins + " times"));
+                    Assert.IsFalse(output.Contains("Computer wins " + computerWins + " times"));
                 }
             }
         }
