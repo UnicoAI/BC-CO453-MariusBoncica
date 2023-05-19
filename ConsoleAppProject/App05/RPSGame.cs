@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleAppProject.App05
 {
-    internal class RPSGame
+    public class RPSGame
     {
         public void Run()
         {

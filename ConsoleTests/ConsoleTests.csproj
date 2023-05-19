@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Rock-paper-scissors-game-in-windows-form\Rock Paper Scissors\Rock Paper Scissors.csproj" />
     <ProjectReference Include="..\ConsoleAppProject\ConsoleAppProject.csproj" />
   </ItemGroup>
 
