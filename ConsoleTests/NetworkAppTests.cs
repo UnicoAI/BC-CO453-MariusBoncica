@@ -30,7 +30,7 @@ namespace ConsoleAppProject.Tests
         [TestMethod]
         public void Test_Unlike()
         {
-            Post post = new Post("Boncica");
+            Post post = new("Boncica");
             {
                 // Arrange
                 post.Like();
@@ -47,7 +47,7 @@ namespace ConsoleAppProject.Tests
         [TestMethod]
         public void Test_AddComment()
         {
-            Post post = new Post("Boncica");
+            Post post = new("Boncica");
             {
                 // Arrange
                 string comment = "Nice post!";
@@ -63,22 +63,20 @@ namespace ConsoleAppProject.Tests
         [TestMethod]
         public void Test_DisplayComments()
         {
-            Post post = new Post("Boncica");
+            Post post = new("Boncica");
             {
                 // Arrange
                 post.AddComment("Comment 1");
 
 
                 // Act
-                using (StringWriter sw = new StringWriter())
-                {
-                    Console.SetOut(sw);
-                    post.DisplayComments();
-                    string output = sw.ToString().Trim();
+                using StringWriter sw = new StringWriter();
+                Console.SetOut(sw);
+                post.DisplayComments();
+                string output = sw.ToString().Trim();
 
-                    // Assert
-                    Assert.AreEqual(1, 1);
-                }
+                // Assert
+                Assert.AreEqual(1, 1);
             }
         }
     }

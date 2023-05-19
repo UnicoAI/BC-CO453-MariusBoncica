@@ -18,26 +18,24 @@ namespace ConsoleAppProject.Tests
             {
                 // Arrange
                 string userChoice = "ROCK";
-                string computerChoice = "SCISSORS";
+                
                 string continueAnswer = "NO";
                 int userWins = 1;
                 int computerWins = 0;
 
-                using (StringWriter sw = new StringWriter())
-                {
-                    // Prepare input and output streams
-                    Console.SetOut(sw);
-                    Console.SetIn(new StringReader($"{userChoice}\n{continueAnswer}\n"));
+                using StringWriter sw = new StringWriter();
+                // Prepare input and output streams
+                Console.SetOut(sw);
+                Console.SetIn(new StringReader($"{userChoice}\n{continueAnswer}\n"));
 
-                    // Act
+                // Act
 
-                    string output = sw.ToString().Trim();
+                string output = sw.ToString().Trim();
 
-                    // Assert
-                    Assert.IsFalse(output.Contains("User wins"));
-                    Assert.IsFalse(output.Contains("User wins " + userWins + " times"));
-                    Assert.IsFalse(output.Contains("Computer wins " + computerWins + " times"));
-                }
+                // Assert
+                Assert.IsFalse(output.Contains("User wins"));
+                Assert.IsFalse(output.Contains("User wins " + userWins + " times"));
+                Assert.IsFalse(output.Contains("Computer wins " + computerWins + " times"));
             }
         }
     }
