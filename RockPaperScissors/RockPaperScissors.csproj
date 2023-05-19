@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\paper.png" />
+    <None Remove="Resources\rock.png" />
+    <None Remove="Resources\rockscissor.png" />
+    <None Remove="Resources\scissors.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\paper.png" />
+    <Content Include="Resources\rock.png" />
+    <Content Include="Resources\rockscissor.png" />
+    <Content Include="Resources\scissors.png" />
+  </ItemGroup>
+
+</Project>

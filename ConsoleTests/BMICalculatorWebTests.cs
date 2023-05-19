@@ -11,10 +11,12 @@ namespace ConsoleAppProject.Tests
         public void Test_BMIcalc_Imperial()
         {
             // Arrange
-            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
-            bmiCalculator.Feet = 5;
-            bmiCalculator.Inches = 10;
-            bmiCalculator.Weight = 160;
+            BMICalculatorWeb bmiCalculator = new()
+            {
+                Feet = 5,
+                Inches = 10,
+                Weight = 160
+            };
 
             // Act
             ;
@@ -28,11 +30,13 @@ namespace ConsoleAppProject.Tests
         public void Test_BMIcalc_Metric()
         {
             // Arrange
-            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
-            bmiCalculator.Height = 1.75;
-            bmiCalculator.Weight = 70;
+            BMICalculatorWeb bmiCalculator = new()  
+            {
+                Height = 1.75,
+                Weight = 70
+            };
 
-         
+
             // Act
             ;
             double result = Convert.ToInt32(bmiCalculator.BMIcalc(false));
@@ -45,8 +49,7 @@ namespace ConsoleAppProject.Tests
         public void Test_BMIdescription_Underweight()
         {
             // Arrange
-            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
-            bmiCalculator.Bmi = 18;
+            BMICalculatorWeb bmiCalculator = new() { Bmi = 18 };
 
             // Act
             string description = bmiCalculator.BMIdescription(0);
@@ -59,8 +62,10 @@ namespace ConsoleAppProject.Tests
         public void Test_BMIdescription_Normal()
         {
             // Arrange
-            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
-            bmiCalculator.Bmi = 24.9;
+            BMICalculatorWeb bmiCalculator = new()
+            {
+                Bmi = 24.9
+            };
 
             // Act
             string description = bmiCalculator.BMIdescription(0);
@@ -73,8 +78,10 @@ namespace ConsoleAppProject.Tests
         public void Test_BMIdescription_Overweight()
         {
             // Arrange
-            BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
-            bmiCalculator.Bmi = 30;
+            BMICalculatorWeb bmiCalculator = new()
+            {
+                Bmi = 30
+            };
 
             // Act
             string description = bmiCalculator.BMIdescription(0);
