@@ -10,6 +10,7 @@ namespace ConsoleAppProject.App01
     /// <author>
     /// Marius Boncica
     /// </author>
+    /// Version 2.0
     public class DistanceConverter
     {
         // Create a new dictionary of strings, with string keys.
@@ -25,7 +26,7 @@ namespace ConsoleAppProject.App01
             {
             }
         }
-        // Starting value name
+        // Starting value name, declare constructors
         public string Unit1 { get; set; }
         // Target value name
         public string Unit2 { get; set; }
@@ -60,13 +61,14 @@ namespace ConsoleAppProject.App01
             }
         }
 
+        //Method to start program and write Header
         public void Run()
         {
             syntaxGen.SubheaderGen("Distance Converter");
             UserInput();
 
         }
-
+        //Conversion method
         public void UnitConversionData()
         {
             unitConversion.Add("metres", "m,1");
@@ -83,7 +85,7 @@ namespace ConsoleAppProject.App01
             methodReverse.Add(0, 1);
             methodReverse.Add(1, 0);
         }
-        // This is an input checker designed to check the distance values using the enum class
+        // method  input checker to check the distance values using the enum class
         public string DistanceChecker(string consoleWrite)
         {
             string data = "";
@@ -113,7 +115,7 @@ namespace ConsoleAppProject.App01
             Console.WriteLine(syntaxGen.SyntaxFiller1(Unit1Value + " " + Unit1 + " ---> " + res + " " + Unit2));
             syntaxGen.SyntaxFiller2();
         }
-        // This method joins all calculations to produce a result
+        // Boolean method to enable result
         public double ConverterResult(bool version)
         {
             WebVersion = version;
@@ -181,7 +183,7 @@ namespace ConsoleAppProject.App01
             }
             return Result;
         }
-        //This translates the disctionary values giving the required infomation for a successful converison
+        //This method translates the disctionary values giving the required infomation for a successful converison
         public double UnitConversionParser(string data, int dataType)
         {
             Splitter = data.Split(",");

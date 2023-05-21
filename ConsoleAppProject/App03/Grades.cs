@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 namespace ConsoleAppProject.App03
 {
     /// <summary>
+    /// Author: Marius Boncica
+    /// Using enumaration for Grades Level
     /// Grade A is First Class   : 70 - 100
     /// Grade B is Upper Second  : 60 - 69
     /// Grade C is Lower Second  : 50 - 59

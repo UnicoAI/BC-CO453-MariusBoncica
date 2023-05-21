@@ -21,6 +21,7 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
+        //initiate an array of Post class
         private readonly List<Post> posts;
 
         ///<summary>
@@ -36,15 +37,17 @@ namespace ConsoleAppProject.App04
         /// 
         /// @param photo  The photo post to be added.
         ///</summary>
+        ///method to add photo to the array of posts
         public void AddPhotoPost(PhotoPost photo)
         {
             posts.Add(photo);
         }
-
+        //method to add message to the array post
         public void AddMessagePost(MessagePost message)
         {
             posts.Add(message);
         }
+        //method to remove post from the array of posts
 
         public void RemovePost(int id)
         {
@@ -61,6 +64,7 @@ namespace ConsoleAppProject.App04
                 posts.Remove(post);
             }
         }
+        //method to find a post
 
         public Post FindPost(int id)
         {
@@ -74,7 +78,7 @@ namespace ConsoleAppProject.App04
 
             return null;
         }
-
+       
         public void AddACommentToAPost(int id, string comment)
         {
 
@@ -86,19 +90,19 @@ namespace ConsoleAppProject.App04
         /// terminal. (To do: replace this later with display in web browser.)
         ///</summary>
         ///
-
+        //Method to pass int ID to allocate like to a specific post
         public void LikeAPost(int id)
         {
             Post post = FindPost(id);
             post.Like();
         }
-
+        //Method to pass int ID to allocate unlike to a specific post
         public void UnlikePost(int id)
         {
             Post post = FindPost(id);
             post.Unlike();
         }
-
+        //Method to display posts
         public void Display()
         {
             // display all posts

@@ -10,6 +10,9 @@ namespace ConsoleAppProject.App03
     /// <author>
     /// Marius Boncica
     /// </author>
+    /// Version 2.0 Refactored
+    /// 
+   //Declare variables and create constructors(Getters and setters)
     public class StudentGrades
     {
         // Constants
@@ -29,7 +32,7 @@ namespace ConsoleAppProject.App03
         public int Maximum { get; set; } // Maximum Mark Variable
 
         /// <summary>
-        /// Runs the required functions in the correct order, allowing for the program to operate correctly.
+        /// Method to run program
         /// </summary>
         public void Run()
         {
@@ -71,9 +74,10 @@ namespace ConsoleAppProject.App03
                     break;
             }
         }
-        public StudentGrades() // Constructor of StudentGrades
+        // Constructor of StudentGrades
+        public StudentGrades() 
         {
-            Students = new[] // Adds 10 Students to the Students Array List.
+            Students = new[] // Initiat an array of students and add 10 students
             {
                 "Marius", "Daniel", "Boncica", "Martin", "Biden", "Putin", "Biden", "Iohanis", "Macron", "Smith"
             };
@@ -85,6 +89,7 @@ namespace ConsoleAppProject.App03
         /// <summary>
         /// Allows the user to input an individual mark for each Student, and for this to be stored in the Array.
         /// </summary>
+        /// Method to Input Marks
         public void InputMarks()
         {
             ConsoleHelper.OutputHeading("Student Grades");
@@ -100,7 +105,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// Allows the user to output a list of marks for all Students, showing their Mark and Calculated Grade.
+        /// Method to Allow user to display a list of marks for all Students, showing their Mark and Calculated Grade.
         /// </summary>
         public void OutputMarks()
         {
@@ -117,7 +122,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// This method performs the Mark to Grade conversion, by determining what Grade Boundary the Student is in, based on their Mark.
+        /// This method convert Marks to Grades
         /// </summary>
         public static Grades ConvertToGrade(int mark)
         {

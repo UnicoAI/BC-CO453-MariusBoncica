@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using ConsoleAppProject.Helpers;
 using ConsoleAppProject.App04;
-
+/// <author>
+/// Daniel Boncica
+/// version 2.0 Refactored
+/// </author>
 namespace ConsoleAppProject.App04
 {
+    //Method to initiate news object
     public class NetworkApp
     {
         private NewsFeed news = new NewsFeed();
@@ -51,7 +55,7 @@ namespace ConsoleAppProject.App04
 
     }
 
-    // Code for posting a photo
+    // Method for posting a photo
     private void AddPhoto()
     {
         Console.WriteLine("Enter your name: ");
@@ -66,13 +70,13 @@ namespace ConsoleAppProject.App04
         PhotoPost photopost = new PhotoPost(name, filename, caption);
         news.AddPhotoPost(photopost);
     }
-
+        //Method to display 
     private void DisplayAll()
     {
         news.Display();
     }
 
-    // Code for posting a message
+    // Method to post a message
     private void PostMessage()
     {
         Console.WriteLine("Enter your name:");
@@ -85,7 +89,7 @@ namespace ConsoleAppProject.App04
         news.AddMessagePost(post);
     }
 
-    // Code for removing a post
+    // Method to remove a post
     private void RemovePost()
     {
         ConsoleHelper.OutputTitle($"Removing a post");
@@ -96,7 +100,7 @@ namespace ConsoleAppProject.App04
 
     }
 
-    // Code for adding a comment to a post
+    // Method to add a comment to a post
     public void AddCommentsToPost()
     {
         int id = (int)ConsoleHelper.InputNumber("Please enter the Post ID: ");
@@ -109,7 +113,7 @@ namespace ConsoleAppProject.App04
 
     }
 
-    // Code for liking a post
+    // Method for liking a post
     public void LikePost()
     {
         int id = (int)ConsoleHelper.InputNumber("Please enter the Post ID: ");
@@ -117,7 +121,7 @@ namespace ConsoleAppProject.App04
         news.LikeAPost(id);
     }
 
-    // Code for unliking a post
+    // Method for unliking a post
     public void UnlikeAPost()
     {
         int id = (int)ConsoleHelper.InputNumber("Please enter the Post ID: ");

@@ -4,7 +4,10 @@ namespace ConsoleAppProject.App02
 {
     /// <summary>
     /// List of units used to classify BMI group with display names for easy access
+    /// Author: Marius Boncica
+    /// Version 1.0
     /// </summary>
+    /// Declare the enumeration
     public enum BMIenum
     {
         [Display(Name = "Underweight")]

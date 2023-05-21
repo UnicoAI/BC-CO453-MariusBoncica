@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+/// <author>
+/// Daniel Boncica
+/// version 2.0 Refactored
+/// </author>
 namespace ConsoleAppProject.App04
 {
+    //initiat variables 
     public class Post
     {
         public int PostID { get; }
@@ -19,7 +23,7 @@ namespace ConsoleAppProject.App04
 
         public DateTime Timestamp { get; }
 
-
+        //use instances to pass ID of author to ad allocate comments
         public Post(string author)
         {
             instances++;
@@ -39,7 +43,7 @@ namespace ConsoleAppProject.App04
 
 
         ///<summary>
-        /// Record that a user has withdrawn his/her 'Like' vote.
+        /// Method to unlike a post by decreasing the 'Like' count.
         ///</summary>
         public void Unlike()
         {
@@ -48,12 +52,13 @@ namespace ConsoleAppProject.App04
                 likes--;
             }
         }
+        //method to ass a comment
 
         public void AddComment(String text)
         {
             comments.Add(text);
         }
-
+        //method to format time and display elapsed time
         private String FormatElapsedTime(DateTime time)
         {
             DateTime current = DateTime.Now;
@@ -71,13 +76,13 @@ namespace ConsoleAppProject.App04
                 return seconds + " seconds ago";
             }
         }
-
+        //method to display comments
         public void DisplayComments()
         {
             string acomment = comments.ToString();
             Console.WriteLine($"{acomment}");
         }
-
+        //method to display post
         public virtual void Display()
         {
             Console.WriteLine($"Post ID: {PostID}");

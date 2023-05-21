@@ -10,6 +10,8 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Marius Boncica Version 2 refactored
     /// </author>
+    /// 
+    //Declare the variable and create constructors getters  and settters
     public class BMICalculatorWeb
     {
         SyntaxGenerator syntaxGen = new SyntaxGenerator();
@@ -43,7 +45,7 @@ namespace ConsoleAppProject.App02
             {
             }
         }
-        // Used for console use to work out BMI
+        // mETHOD TO RUN PROFRAM
         public void Run()
         {
             InputReader reader = new InputReader();
@@ -75,7 +77,7 @@ namespace ConsoleAppProject.App02
             BMIOutput(UnitVal);
 
         }
-        // Calculates BMI in an efficient fashion
+        // Method to Calculates BMI 
         public string BMIcalc(bool imperical)
         {
             BMIdata();
@@ -87,7 +89,7 @@ namespace ConsoleAppProject.App02
             Bmi = Weight / (Height * Height);
             return Bmi.ToString("0.#");
         }
-        // Fetches the description or colour linking to the BMI score using the data stored in the dictionary
+        // Match the description or colour linking to the BMI score using the data stored in the dictionary
         public string BMIdescription(int selectData)
         {
             foreach (string arrayData in data)

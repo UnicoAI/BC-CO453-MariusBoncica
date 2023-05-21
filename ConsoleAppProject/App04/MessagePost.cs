@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App04
     /// </summary>
     /// <author>
     /// Daniel Boncica
-    /// version 0.1
+    /// version 2.0 Refactored
     /// </author>
     public class MessagePost : Post
     {
@@ -20,18 +20,14 @@ namespace ConsoleAppProject.App04
 
         /// <summary>
         /// Constructor for objects of class MessagePost.
+        /// Using Inheritance Declared using base clss
         /// </summary>
-        /// <param name="author">
-        /// The username of the author of this post.
-        /// </param>
-        /// <param name="text">
-        /// The text of this post.
-        /// </param>
+       
         public MessagePost(String author, String text) : base(author)
         {
             Message = text;
         }
-
+        //Method to display message
         public override void Display()
         {
             Console.WriteLine($"Message: {Message}");

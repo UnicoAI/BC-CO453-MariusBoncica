@@ -4,7 +4,7 @@ namespace ConsoleAppProject.App02
 {
     /// <summary>
     /// <author>
-    /// Units List Enumaration
+    /// Units List Enumaration for refactoring stage 2
     /// Marius Boncica
     /// </author>
     public enum UnitsList

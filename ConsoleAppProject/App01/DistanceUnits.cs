@@ -4,7 +4,9 @@ namespace ConsoleAppProject.App01
 {
     /// <summary>
     /// List of units used to measure distance with display names for easy access
+    /// //Autor: Marius Boncica
     /// </summary>
+    /// Version 1.0
     public enum DistanceUnits
     {
         [Display(Name = "metres")]
