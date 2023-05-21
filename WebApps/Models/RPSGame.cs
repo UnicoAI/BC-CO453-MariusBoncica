@@ -1,7 +1,11 @@
 ﻿
     using System;
     using System.Collections.Generic;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Models
 {
     using System;

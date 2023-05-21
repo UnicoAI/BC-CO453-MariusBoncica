@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Controllers
 {
     public class RPSController : Controller
@@ -8,10 +12,11 @@ namespace WebApps.Controllers
         [HttpGet]
         public ActionResult RPS()
         {
-            return View();
+            return View();//return view index
         }
 
         [HttpPost]
+        //post string of choices and use random for computer choice
         public ActionResult RPS(string userChoice, string username)
         {
             string[] choices = new string[3] { "ROCK", "PAPER", "SCISSOR" };
@@ -23,7 +28,7 @@ namespace WebApps.Controllers
             int userScore = 0;
             int computerScore = 0;
             int counts = 1;
-
+            //calculate winner base on matching choices possibilities using if 
             if (ViewData["UserScore"] != null && ViewData["UserScore"] is string userScoreString && int.TryParse(userScoreString, out int parsedUserScore))
             {
                 userScore = parsedUserScore;
@@ -83,7 +88,7 @@ namespace WebApps.Controllers
             {
                 result = "It is a tie. Try Again";
             }
-
+            //display data in cshtml
             ViewData["UserChoice"] = userChoice;
             ViewData["ComputerChoice"] = computerChoice;
             ViewData["Result"] = result;

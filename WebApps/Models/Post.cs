@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Models
 {
     [Serializable]

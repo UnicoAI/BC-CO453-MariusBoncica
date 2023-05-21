@@ -8,7 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using WebApps.Data;
 using WebApps.Models;
 using ConsoleAppProject.App03;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Controllers
 {
     public class StudentsController : Controller

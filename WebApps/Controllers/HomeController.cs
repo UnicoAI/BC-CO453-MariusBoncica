@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 using WebApps.Models;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App01;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Controllers
 {
     public class HomeController : Controller

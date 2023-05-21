@@ -1,5 +1,7 @@
 using Rock_Paper_Scissors;
-
+//Author: Marius Boncica
+//RPS WINDOW FORM
+//VERSION 1.0
 namespace RockPapperScissors
 {
     internal static class Program

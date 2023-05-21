@@ -3,7 +3,8 @@
     partial class Form1
     {
         /// <summary>
-        /// Required designer variable.
+        /// Author: Marius Boncia
+        /// Version 1.0
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 

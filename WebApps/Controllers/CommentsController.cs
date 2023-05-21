@@ -9,7 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApps.Data;
 using WebApps.Models;
-
+//<author>Marius Boncica
+//</author>
+//<summary>
+//version 1.0
+//</summary>
 namespace WebApps.Controllers
 {
     public class CommentsController : Controller

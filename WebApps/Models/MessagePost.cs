@@ -9,8 +9,8 @@ namespace WebApps.Models
     /// text message. Other data, such as author and time, are also stored.
     /// </summary>
     /// <author>
-    /// Michael Kölling and David J. Barnes
-    /// version 0.1
+    /// Marius Boncica
+    /// version 1.0
     /// </author>
     public class MessagePost : Post
     {
