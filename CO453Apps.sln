@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApps", "WebApps\WebApps.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTests", "ConsoleTests\ConsoleTests.csproj", "{9C9B3052-8FC3-46DD-BD43-19F893DB9AB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPapperScissors", "RockPapperScissors\RockPapperScissors.csproj", "{F9B03DBE-7AF2-4E40-8DDD-321C8B7EB601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RockPapperScissors", "RockPapperScissors\RockPapperScissors.csproj", "{F9B03DBE-7AF2-4E40-8DDD-321C8B7EB601}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App05MonoGame", "..\App05MonoGame\App05MonoGame.csproj", "{6579F084-A60D-46E5-9B6D-8A7E7F4F898A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F9B03DBE-7AF2-4E40-8DDD-321C8B7EB601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B03DBE-7AF2-4E40-8DDD-321C8B7EB601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B03DBE-7AF2-4E40-8DDD-321C8B7EB601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6579F084-A60D-46E5-9B6D-8A7E7F4F898A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6579F084-A60D-46E5-9B6D-8A7E7F4F898A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6579F084-A60D-46E5-9B6D-8A7E7F4F898A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6579F084-A60D-46E5-9B6D-8A7E7F4F898A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

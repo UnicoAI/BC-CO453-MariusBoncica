@@ -52,6 +52,14 @@ namespace ConsoleAppProject.App01
             }
         }
 
+        public DistanceUnits DistanceUnits1
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void Run()
         {
             syntaxGen.SubheaderGen("Distance Converter");

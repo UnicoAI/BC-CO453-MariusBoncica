@@ -215,5 +215,13 @@ namespace ConsoleAppProject.App03
             }
             Run(); // Show Menu
         }
+
+        public Grades Grades
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }
