@@ -3,10 +3,11 @@ using System.Linq;
 namespace ConsoleAppProject
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// Input Reader
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Marius Boncica 
+    /// Version 1.0
     /// </author>
     public class InputReader
     {

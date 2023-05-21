@@ -3,10 +3,10 @@ using System;
 namespace ConsoleAppProject
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// Sintax Generator
     /// </summary>
     /// <author>
-    /// Marius Boncica version 0.1
+    /// Marius Boncica version 1.0
     /// </author>
     public class SyntaxGenerator
     {
@@ -22,7 +22,7 @@ namespace ConsoleAppProject
             return text + fill;
 
         }
-
+        //method to generate header
         public void HeaderGen(string heading)
         {
             Console.WriteLine(" ╔──────────────────────────────────────────────────────╗");
@@ -34,6 +34,7 @@ namespace ConsoleAppProject
             Console.ResetColor();
 
         }
+       //method to generate subheading
         public void SubheaderGen(string subheading)
         {
             Console.WriteLine("  ├────────────────────────────────────────────────────┐");

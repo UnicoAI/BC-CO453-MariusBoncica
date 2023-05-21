@@ -1,6 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleAppProject.App03;
+/// <summary>
+/// Test Unit For Student Grades app
 
+/// Author: Marius Boncica
+/// </summary>
 namespace ConsoleTests
 {
     [TestClass]

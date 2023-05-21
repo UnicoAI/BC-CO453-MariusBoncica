@@ -1,11 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConsoleAppProject.App02;
-
+using ConsoleAppProject.App02;  
+/// <summary>
+                                /// Test Unit For BMI app
+                                
+                                /// Author: Marius Boncica
+                                /// </summary>
 namespace ConsoleApp.Test
 {
     [TestClass]
     public class BMICalculatorWebTests
     {
+        //method to test metric low boundary of underweight
         [TestMethod]
         public void TestMetricBMIcalc()
         {
@@ -19,7 +24,7 @@ namespace ConsoleApp.Test
             Assert.AreEqual(expectedBMI, actualBMI);
         }
         [TestMethod]
-
+        //method to imperial test low boundary of underweight
         public void TestImperialBMIcalc()
         {
             BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
@@ -32,7 +37,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
-
+        //method to test metric low boundary f normal bmi
         [TestMethod]
         public void TestBMIdescription()
         {
@@ -45,7 +50,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }
-
+        //method to test color bmi display
         [TestMethod]
         public void TestBMIColor()
         {
@@ -58,6 +63,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedColor, actualColor);
         }
+        //method to test metric high boundary
         [TestMethod]
         public void TestUnderweightMetric()
         {
@@ -70,6 +76,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric normal bmi
         [TestMethod]
         public void TestNormalMetric()
         {
@@ -82,6 +89,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric high boundary obese
 
         [TestMethod]
         public void TestHighMetric()
@@ -95,6 +103,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric underweight bmi
         public void TestImperialUnderWeightLowBMIcalc()
         {
             BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
@@ -107,6 +116,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test mimperial low boundary underweight
         public void TestImperialUnderWeightHighBMIcalc()
         {
             BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();
@@ -119,6 +129,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 1
         [TestMethod]
         public void TestObeseIMetric()
         {
@@ -131,6 +142,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 2
         [TestMethod]
         public void TestObeseIIMetric()
         {
@@ -143,6 +155,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test imperial low boundary normal
         [TestMethod]
         public void TestImperiaNormaLowBMIcalc()
         {
@@ -156,6 +169,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 1
         [TestMethod]
         public void TestImperiaObeseIHighBMIcalc()
         {
@@ -169,6 +183,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test imperial low boundary obesse 1
         [TestMethod]
         public void TestImperialObeseWeightLowBMIcalc()
         {
@@ -182,6 +197,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test imperial low boundary obesse 2
         [TestMethod]
         
         public void TestImperiaObeseIILowLowBMIcalc()
@@ -196,6 +212,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test imperial low boundary obesse 2
         [TestMethod]
 
         public void TestImperiaObeseIIHighBMIcalc()
@@ -210,6 +227,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 3
         [TestMethod]
         public void TestObeseIIIMetric()
         {
@@ -222,6 +240,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test imperial low boundary obesse 3
         [TestMethod]
 
         public void TestImperiaObeseIIILowLowBMIcalc()
@@ -236,6 +255,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 1
         [TestMethod]
         public void TestObeseILowMetric()
         {
@@ -248,6 +268,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric low boundary obesse 3
         [TestMethod]
         public void TestObeseIHighMetric()
         {
@@ -260,6 +281,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric high boundary obesse 3
         [TestMethod]
         public void TestObeseIIILowMetric()
         {
@@ -272,6 +294,7 @@ namespace ConsoleApp.Test
 
             Assert.AreEqual(expectedBMI, actualBMI);
         }
+        //method to test metric  obesse 3
         [TestMethod]
         public void TestObeseIIIHighMetric()
         {
@@ -285,7 +308,7 @@ namespace ConsoleApp.Test
             Assert.AreEqual(expectedBMI, actualBMI);
         }
         [TestMethod]
-
+        //method to test imperial high boundary obesse 3
         public void TestImperiaObeseIIIHighBMIcalc()
         {
             BMICalculatorWeb bmiCalculator = new BMICalculatorWeb();

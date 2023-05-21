@@ -1,12 +1,17 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleAppProject.App01;
 using System;
+/// <summary>
+/// Test Unit For Distance Converter app
 
+/// Author: Marius Boncica
+/// </summary>
 namespace ConsoleApp.Tests
 {
     [TestClass]
     public class DistanceConverterTest
     {
+        //method to test micrometers to micrometers
         [TestMethod]
         public void TestMicrometresToMicrometres()
         {
@@ -20,6 +25,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test micrometer to cm
         [TestMethod]
         public void TestMicrometresToCentimetres()
         {
@@ -33,6 +39,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test micrmoters to meters
         [TestMethod]
         public void TestMicrometresToMetres()
         {
@@ -46,6 +53,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test micrometers to feet
         [TestMethod]
         public void TestMicrometresToFeet()
         {
@@ -59,6 +67,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test micrometers to miles
         [TestMethod]
         public void TestMicrometresToMiles()
         {
@@ -72,6 +81,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test cm to micrometers
         [TestMethod]
         public void TestCentimetresToMicrometres()
         {
@@ -85,6 +95,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test cm to cm
         [TestMethod]
         public void TestCentimetresToCentimetres()
         {
@@ -98,6 +109,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test cm to m
         [TestMethod]
         public void TestCentimetresToMetres()
         {
@@ -111,6 +123,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test cm to feet
         [TestMethod]
         public void TestCentimetresToFeet()
         {
@@ -124,6 +137,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test cm to miles
         [TestMethod]
         public void TestCentimetresToMiles()
         {
@@ -137,6 +151,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //methos to test meters to cm
         [TestMethod]
         public void TestMetresToMicrometres()
         {
@@ -150,6 +165,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test meters to cm
         [TestMethod]
         public void TestMetresToCentimetres()
         {
@@ -163,6 +179,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test meters to meters
         [TestMethod]
         public void TestMetresToMetres()
         {
@@ -176,6 +193,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test metes to feet
         [TestMethod]
         public void TestMetresToFeet()
         {
@@ -189,6 +207,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test meters to miles
         [TestMethod]
         public void TestMetresToMiles()
         {
@@ -202,6 +221,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test feet to cm
         [TestMethod]
         public void TestFeetToMicrometres()
         {
@@ -215,6 +235,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test feet to cm
         [TestMethod]
         public void TestFeetToCentimetres()
         {
@@ -228,6 +249,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test feeet to meters
         [TestMethod]
         public void TestFeetToMetres()
         {
@@ -241,6 +263,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test feet to feet
         [TestMethod]
         public void TestFeetToFeet()
         {
@@ -254,6 +277,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test feeet to miles
         [TestMethod]
         public void TestFeetToMiles()
         {
@@ -267,6 +291,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test miles to micrometers
         [TestMethod]
         public void TestMilesToMicrometres()
         {
@@ -280,6 +305,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test miles to cm
         [TestMethod]
         public void TestMilesToCentimetres()
         {
@@ -293,6 +319,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test miles to miles
         [TestMethod]
         public void TestMilesToMetres()
         {
@@ -306,6 +333,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test miles to feet
         [TestMethod]
         public void TestMilesToFeet()
         {
@@ -319,6 +347,7 @@ namespace ConsoleApp.Tests
                 Assert.AreEqual(expectedDistance, result);
             }
         }
+        //method to test miles to miles
         [TestMethod]
         public void TestMilesToMiles()
         {

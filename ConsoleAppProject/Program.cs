@@ -14,7 +14,7 @@ namespace ConsoleAppProject
     /// to start Apps 01 to 05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Derek Peacock 14/12/2020
+    /// 
     /// Marius Boncica
     /// </summary>
     public static class Program
@@ -34,7 +34,7 @@ namespace ConsoleAppProject
             {
             }
         }
-
+        //Method to rn program
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -44,7 +44,7 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Menu();
         }
-
+        //method to display choices
         public static void Menu() // Menu Navigation
         {
             Console.WriteLine("Please select a Program to Run:"); // User Prompt

@@ -3,7 +3,11 @@ using System;
 using System.IO;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.App04;
+/// <summary>
+/// Test Unit For Network  app
 
+/// Author: Marius Boncica
+/// </summary>
 namespace ConsoleAppProject.Tests
 {
     [TestClass]
